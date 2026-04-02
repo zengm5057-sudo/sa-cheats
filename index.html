@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SA Cheats — PS4/PS5 · Xbox</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── CSS VARIABLES ────────────────────────────────────────────────────────── */
+:root {
+  --bg: #080810;
+  --surface: #0f0f1a;
+  --card: #13131e;
+  --card-hover: #17172a;
+  --border: #1c1c30;
+  --border-strong: #2a2a44;
+  --accent: #ff6b00;
+  --accent2: #ffd000;
+  --text: #e8e8f2;
+  --muted: #555570;
+  --muted2: #888899;
+  --tag-bg: #1a1a2e;
+  --toast-bg: #1c1c2e;
+  --glow: rgba(255,107,0,0.12);
+  --transition: 0.2s ease;
+}
+:root.light {
+  --bg: #eeeef5;
+  --surface: #e0e0ec;
+  --card: #f8f8ff;
+  --card-hover: #ffffff;
+  --border: #cccce0;
+  --border-strong: #b0b0cc;
+  --accent: #d95500;
+  --accent2: #b08000;
+  --text: #181828;
+  --muted: #9090aa;
+  --muted2: #666680;
+  --tag-bg: #e0e0f0;
+  --toast-bg: #2a2a3e;
+  --glow: rgba(255,107,0,0.08);
+}
+
+/* ─── RESET ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── BODY ─────────────────────────────────────────────────────────────────── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* scanlines */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.06) 2px,
+    rgba(0,0,0,0.06) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* grid texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,107,0,0.025) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,107,0,0.025) 40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── HEADER ───────────────────────────────────────────────────────────────── */
+header {
+  position: relative;
+  padding: 48px 24px 32px;
+  text-align: center;
+  z-index: 1;
+}
+
+.header-glow {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 200px;
+  background: radial-gradient(ellipse at center top, rgba(255,107,0,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.header-actions {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.icon-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all var(--transition);
+  line-height: 1;
+}
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 9vw, 80px);
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, #ff6b00 0%, #ffaa00 50%, #ffd000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.header-badges {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: 3px;
+}
+.badge-ps   { background: rgba(0,70,255,0.15); border: 1px solid rgba(0,70,255,0.35); color: #5588ff; }
+.badge-xbox { background: rgba(16,124,16,0.15); border: 1px solid rgba(16,124,16,0.35); color: #4ec44e; }
+.badge-ver  { background: rgba(255,107,0,0.12); border: 1px solid rgba(255,107,0,0.35); color: var(--accent); }
+
+.header-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin-top: 28px;
+  opacity: 0.5;
+}
+
+/* ─── PLATFORM SWITCHER ─────────────────────────────────────────────────────── */
+.platform-bar {
+  max-width: 960px;
+  margin: 24px auto 0;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  z-index: 1;
+  position: relative;
+}
+
+.platform-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.platform-btn:first-child { border-radius: 4px 0 0 4px; }
+.platform-btn:last-child  { border-radius: 0 4px 4px 0; }
+.platform-btn.active.ps   { background: rgba(0,70,255,0.18); border-color: rgba(0,70,255,0.5); color: #5588ff; }
+.platform-btn.active.xbox { background: rgba(16,124,16,0.2);  border-color: rgba(16,124,16,0.5); color: #4ec44e; }
+.platform-btn:not(.active):hover { border-color: var(--border-strong); color: var(--text); }
+
+/* ─── CONTROLS BAR ──────────────────────────────────────────────────────────── */
+.controls {
+  max-width: 960px;
+  margin: 20px auto 0;
+  padding: 0 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.search-wrap {
+  flex: 1;
+  min-width: 220px;
+  position: relative;
+}
+.search-wrap .s-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+.search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px;
+  display: none;
+  transition: color var(--transition);
+}
+.search-clear:hover { color: var(--accent); }
+.search-clear.visible { display: block; }
+
+#search {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  padding: 11px 36px 11px 40px;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+#search:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--glow); }
+#search::placeholder { color: var(--muted); }
+
+.ctrl-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.action-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.action-btn:hover { border-color: var(--accent); color: var(--accent); }
+.action-btn.accent { border-color: rgba(255,107,0,0.4); color: var(--accent); background: rgba(255,107,0,0.08); }
+.action-btn.accent:hover { background: rgba(255,107,0,0.16); }
+
+/* ─── FILTER BAR ────────────────────────────────────────────────────────────── */
+.filter-bar {
+  max-width: 960px;
+  margin: 12px auto 0;
+  padding: 0 16px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.filter-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.filter-btn .cat-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  background: var(--tag-bg);
+  padding: 1px 5px;
+  border-radius: 2px;
+  color: var(--muted);
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.filter-btn:hover .cat-count { background: rgba(255,107,0,0.1); }
+.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #000; }
+.filter-btn.active .cat-count { background: rgba(0,0,0,0.2); color: #000; }
+
+/* ─── STATUS BAR ────────────────────────────────────────────────────────────── */
+.status-bar {
+  max-width: 960px;
+  margin: 14px auto 0;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.count-info {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+.count-info strong { color: var(--accent); font-weight: 700; }
+
+.view-sort {
+  display: flex;
+  gap: 6px;
+}
+
+.vs-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all var(--transition);
+}
+.vs-btn:hover, .vs-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(255,107,0,0.08); }
+
+/* ─── FAVORITES SECTION ─────────────────────────────────────────────────────── */
+.fav-section {
+  max-width: 960px;
+  margin: 28px auto 0;
+  padding: 0 16px;
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+.fav-section.has-favs { display: block; }
+
+.fav-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.fav-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--accent2);
+}
+.fav-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+.fav-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.fav-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,208,0,0.25), transparent);
+  margin: 24px 0 0;
+}
+
+/* ─── MAIN GRID ─────────────────────────────────────────────────────────────── */
+.grid-wrap {
+  max-width: 960px;
+  margin: 20px auto 80px;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 12px;
+}
+.grid.list-view {
+  grid-template-columns: 1fr;
+  gap: 7px;
+}
+
+/* ─── CARD ──────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition), transform 0.15s ease, box-shadow var(--transition), background var(--transition);
+  cursor: default;
+  animation: fadeIn 0.35s ease both;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.card:hover {
+  background: var(--card-hover);
+  border-color: rgba(255,107,0,0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,107,0,0.06);
+}
+.card:hover::before { opacity: 1; }
+.card.is-fav { border-color: rgba(255,208,0,0.28); }
+.card.is-fav::before { background: var(--accent2); opacity: 1; }
+
+.card-actions {
+  position: absolute;
+  top: 14px; right: 14px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.fav-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  width: 26px; height: 26px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+}
+.fav-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+.fav-btn.active { border-color: var(--accent2); color: var(--accent2); background: rgba(255,208,0,0.1); }
+
+.copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  padding: 4px 9px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-transform: uppercase;
+}
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+.copy-btn.copied { border-color: #44cc88; color: #44cc88; background: rgba(68,204,136,0.08); }
+
+.card-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.card-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 14px;
+  padding-right: 80px;
+}
+.card-code {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* ─── LIST VIEW CARD ────────────────────────────────────────────────────────── */
+.list-view .card {
+  padding: 12px 18px;
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  align-items: center;
+  gap: 16px;
+}
+.list-view .card::before { height: 3px; width: 100%; top: 0; left: 0; }
+.list-view .card-actions { position: static; }
+.list-view .card-category { margin-bottom: 0; }
+.list-view .card-name { margin-bottom: 0; padding-right: 0; font-size: 15px; }
+.list-view .card-code-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.list-view .card-code { gap: 3px; }
+.list-view .card-left { display: flex; flex-direction: column; gap: 3px; }
+
+/* ─── BUTTON PILLS ──────────────────────────────────────────────────────────── */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+
+/* PS colors */
+.btn-cross    { background: rgba(30,144,255,0.15); color: #5599ff; border: 1px solid rgba(30,144,255,0.28); }
+.btn-circle   { background: rgba(255,60,60,0.15);  color: #ff6868; border: 1px solid rgba(255,60,60,0.28); }
+.btn-square   { background: rgba(255,100,180,0.15);color: #ff75c5; border: 1px solid rgba(255,100,180,0.28); }
+.btn-triangle { background: rgba(50,200,100,0.15); color: #55d585; border: 1px solid rgba(50,200,100,0.28); }
+.btn-r1, .btn-r2 { background: rgba(255,190,0,0.12); color: #ffcc00; border: 1px solid rgba(255,190,0,0.25); }
+.btn-l1, .btn-l2 { background: rgba(190,140,255,0.12); color: #cc99ff; border: 1px solid rgba(190,140,255,0.25); }
+.btn-dir      { background: rgba(255,255,255,0.07); color: #aaaacc; border: 1px solid rgba(255,255,255,0.1); }
+
+/* Xbox colors */
+.xbox .btn-a  { background: rgba(0,220,80,0.15); color: #33ee77; border: 1px solid rgba(0,220,80,0.28); }
+.xbox .btn-b  { background: rgba(220,30,30,0.15); color: #ee5555; border: 1px solid rgba(220,30,30,0.28); }
+.xbox .btn-x  { background: rgba(30,144,255,0.15); color: #5599ff; border: 1px solid rgba(30,144,255,0.28); }
+.xbox .btn-y  { background: rgba(220,190,0,0.15); color: #eecc00; border: 1px solid rgba(220,190,0,0.28); }
+.xbox .btn-rb, .xbox .btn-rt { background: rgba(255,190,0,0.12); color: #ffcc00; border: 1px solid rgba(255,190,0,0.25); }
+.xbox .btn-lb, .xbox .btn-lt { background: rgba(190,140,255,0.12); color: #cc99ff; border: 1px solid rgba(190,140,255,0.25); }
+.xbox .btn-dir { background: rgba(255,255,255,0.07); color: #aaaacc; border: 1px solid rgba(255,255,255,0.1); }
+
+/* ─── MARK ──────────────────────────────────────────────────────────────────── */
+mark {
+  background: rgba(255,208,0,0.28);
+  color: var(--accent2);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* ─── NO RESULTS ────────────────────────────────────────────────────────────── */
+.no-results {
+  display: none;
+  text-align: center;
+  padding: 80px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--muted);
+  font-size: 13px;
+  grid-column: 1 / -1;
+}
+.no-results strong {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px;
+  color: var(--border-strong);
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+
+/* ─── TOAST ─────────────────────────────────────────────────────────────────── */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 9999;
+  pointer-events: none;
+}
+.toast {
+  background: var(--toast-bg);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: toastIn 0.25s ease both;
+  pointer-events: none;
+  max-width: 300px;
+}
+.toast.remove { animation: toastOut 0.3s ease both; }
+.toast-icon { font-size: 14px; }
+.toast.type-success { border-color: rgba(68,204,136,0.4); }
+.toast.type-success .toast-icon { color: #44cc88; }
+.toast.type-info    { border-color: rgba(85,153,255,0.4); }
+.toast.type-info    .toast-icon { color: #5599ff; }
+.toast.type-accent  { border-color: rgba(255,107,0,0.4); }
+.toast.type-accent  .toast-icon { color: var(--accent); }
+
+/* ─── SCROLL TO TOP ─────────────────────────────────────────────────────────── */
+#scrollTop {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--muted2);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+#scrollTop.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+#scrollTop:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ─── FOOTER ────────────────────────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ─── KEYBOARD SHORTCUT HINT ────────────────────────────────────────────────── */
+.kbd-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+kbd {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--muted2);
+}
+
+/* ─── ANIMATIONS ────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(20px); }
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+  .fav-grid { grid-template-columns: 1fr; }
+  .header-actions { display: none; }
+  .kbd-hint { display: none; }
+  .list-view .card { grid-template-columns: 1fr; }
+  .list-view .card-code-wrap { flex-direction: column; align-items: flex-start; }
+  #toast-container { bottom: 16px; right: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ───────────────────────────────────────────────────────────── -->
+<header>
+  <div class="header-glow"></div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" title="Toggle theme">🌙</button>
+  </div>
+  <div class="logo">SA CHEATS</div>
+  <div class="subtitle">Grand Theft Auto: San Andreas</div>
+  <div class="header-badges">
+    <span class="badge badge-ps">PS4 · PS5</span>
+    <span class="badge badge-xbox">Xbox One · Series X</span>
+    <span class="badge badge-ver">✓ All Cheats Verified</span>
+  </div>
+  <div class="header-divider"></div>
+</header>
+
+<!-- ── PLATFORM SWITCHER ─────────────────────────────────────────────── -->
+<div class="platform-bar">
+  <button class="platform-btn active ps" data-platform="ps">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8.984 2.596v17.548l3.915 1.261V6.688c0-.69.304-1.151.794-.991.636.181.762.814.762 1.505v5.876c1.689.831 4.21-.175 4.21-3.126 0-3.188-1.128-4.812-4.491-5.893a32.9 32.9 0 0 0-5.19-.463zm6.12 14.367c-1.128.35-2.317.42-3.547.182v2.005l6.354 2.054s3.667-.617 3.667-4.443c0-3.798-3.21-4.606-5.149-5.27v3.943c0 .766.298 1.282.675 1.529zM3 19.641l5.09 1.73v-2.003L3 17.71v1.931z"/></svg>
+    PlayStation
+  </button>
+  <button class="platform-btn xbox" data-platform="xbox">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.102 7.323a9.96 9.96 0 0 0-2.08 6.099c.015 2.712 1.086 5.216 2.913 7.057.105-.115.219-.244.345-.394.765-.906 2.011-2.572 3.28-4.752 1.104-1.902 1.9-3.742 2.368-5.272a7.655 7.655 0 0 0-.545-.567c-.843-.793-2.082-1.522-3.544-2.034a11.83 11.83 0 0 0-2.737-.137zm15.8 0a11.831 11.831 0 0 0-2.737.137c-1.462.512-2.701 1.241-3.544 2.034a7.655 7.655 0 0 0-.545.567c.468 1.53 1.264 3.37 2.368 5.272 1.27 2.18 2.515 3.846 3.28 4.752.126.15.24.279.345.394 1.827-1.841 2.898-4.345 2.913-7.057a9.96 9.96 0 0 0-2.08-6.099zM12 3.03c-1.26-.02-2.862.332-4.297 1.044 1.58.576 2.99 1.424 3.977 2.352.111.103.215.21.32.318.105-.108.209-.215.32-.318.987-.928 2.396-1.776 3.977-2.352C14.862 3.362 13.26 3.01 12 3.03zM4.12 20.66c.013.014.025.028.038.041A9.996 9.996 0 0 0 12 24a9.996 9.996 0 0 0 7.842-3.299c.013-.013.025-.027.038-.04-.075-.085-.153-.178-.248-.289-.788-.934-2.068-2.641-3.368-4.874-1.068-1.84-1.846-3.643-2.303-5.15-.109.1-.22.2-.322.305L12 11.164l-.639-.611c-.101-.104-.213-.206-.322-.305-.457 1.507-1.235 3.31-2.303 5.15-1.3 2.233-2.58 3.94-3.368 4.874-.095.111-.173.204-.248.289z"/></svg>
+    Xbox
+  </button>
+</div>
+
+<!-- ── CONTROLS ────────────────────────────────────────────────────────── -->
+<div class="controls">
+  <div class="search-wrap">
+    <svg class="s-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input id="search" type="text" placeholder="Search cheat name or button (e.g. R1, Circle)…" autocomplete="off" spellcheck="false">
+    <button class="search-clear" id="searchClear" title="Clear search">✕</button>
+  </div>
+  <div class="ctrl-actions">
+    <button class="action-btn accent" id="randomBtn" title="Random cheat">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+      Random
+    </button>
+    <button class="action-btn" id="exportBtn" title="Export favorites">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Export Favs
+    </button>
+    <span class="kbd-hint"><kbd>/</kbd> to search &nbsp;·&nbsp; <kbd>Esc</kbd> to clear</span>
+  </div>
+</div>
+
+<!-- ── FILTER BAR ─────────────────────────────────────────────────────── -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-cat="all">All</button>
+  <button class="filter-btn" data-cat="Player">Player</button>
+  <button class="filter-btn" data-cat="Weapons">Weapons</button>
+  <button class="filter-btn" data-cat="Vehicles">Vehicles</button>
+  <button class="filter-btn" data-cat="Spawn">Spawn</button>
+  <button class="filter-btn" data-cat="World">World</button>
+  <button class="filter-btn" data-cat="Peds">Peds</button>
+  <button class="filter-btn" data-cat="Time">Time/Weather</button>
+</div>
+
+<!-- ── STATUS BAR ─────────────────────────────────────────────────────── -->
+<div class="status-bar">
+  <div class="count-info">Showing <strong id="countNum">0</strong> cheats</div>
+  <div class="view-sort">
+    <button class="vs-btn active" id="gridViewBtn" title="Grid view">⊞</button>
+    <button class="vs-btn" id="listViewBtn" title="List view">☰</button>
+    <button class="vs-btn" id="sortBtn" title="Sort A→Z">A↓</button>
+  </div>
+</div>
+
+<!-- ── FAVORITES ──────────────────────────────────────────────────────── -->
+<div class="fav-section" id="favSection">
+  <div class="fav-header">
+    <span class="fav-title">★ Favorites</span>
+    <span class="fav-meta" id="favCount">0 saved</span>
+    <div class="fav-actions">
+      <button class="action-btn" id="clearFavsBtn">Clear All</button>
+    </div>
+  </div>
+  <div class="fav-grid" id="favGrid"></div>
+  <div class="fav-divider"></div>
+</div>
+
+<!-- ── GRID ───────────────────────────────────────────────────────────── -->
+<div class="grid-wrap">
+  <div class="grid" id="grid">
+    <div class="no-results" id="noResults"><strong>NOT FOUND</strong>Try a different name or button combo</div>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+<footer>
+  SA CHEATS &nbsp;·&nbsp; GTA San Andreas &nbsp;·&nbsp;
+  <a href="https://github.com/Ahmed-Rade/sa-cheats" target="_blank">github.com/Ahmed-Rade/sa-cheats</a>
+</footer>
+
+<!-- ── TOAST CONTAINER ────────────────────────────────────────────────── -->
+<div id="toast-container"></div>
+
+<!-- ── SCROLL TO TOP ──────────────────────────────────────────────────── -->
+<button id="scrollTop" title="Back to top">↑</button>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════════════════════ */
+const CHEATS = [
+  { name: "Weapon Set 1", cat: "Weapons", ps: "R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Right, Up" },
+  { name: "Weapon Set 2", cat: "Weapons", ps: "R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Down, Left" },
+  { name: "Weapon Set 3", cat: "Weapons", ps: "R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Down, Down" },
+  { name: "Money, Health & Armor", cat: "Player", ps: "R1, R2, L1, X, Left, Down, Right, Up, Left, Down, Right, Up" },
+  { name: "Suicide", cat: "Player", ps: "Right, L2, Down, R1, Left, Left, R1, L1, L2, L1" },
+  { name: "Infinite Ammo", cat: "Weapons", ps: "L1, R1, Square, R1, Left, R2, R1, Left, Square, Down, L1, L1" },
+  { name: "Infinite Lung Capacity", cat: "Player", ps: "Down, Left, L1, Down, Down, R2, Down, L2, Down" },
+  { name: "6 Star Wanted Level", cat: "Player", ps: "Circle, Right, Circle, Right, Left, Square, X, Down" },
+  { name: "Raise Wanted Level", cat: "Player", ps: "R1, R1, Circle, R2, Right, Left, Right, Left, Right, Left" },
+  { name: "Lower Wanted Level", cat: "Player", ps: "R1, R1, Circle, R2, Up, Down, Up, Down, Up, Down" },
+  { name: "Lock Wanted Level", cat: "Player", ps: "Circle, Right, Circle, Right, Left, Square, Triangle, Up" },
+  { name: "Maximum Fat", cat: "Player", ps: "Triangle, Up, Up, Left, Right, Square, Circle, Down" },
+  { name: "Minimum Fat (Skinny)", cat: "Player", ps: "Triangle, Up, Up, Left, Right, Square, Circle, Right" },
+  { name: "Maximum Muscle", cat: "Player", ps: "Triangle, Up, Up, Left, Right, Square, Circle, Left" },
+  { name: "Maximum Respect", cat: "Player", ps: "L1, R1, Triangle, Down, R2, X, L1, Up, L2, L2, L1, L1" },
+  { name: "Maximum Sex Appeal", cat: "Player", ps: "Circle, Triangle, Triangle, Up, Circle, R1, L2, Up, Triangle, L1, L1, L1" },
+  { name: "Maximum Vehicle Skills", cat: "Player", ps: "Square, L2, X, R1, L2, L2, Left, R1, Right, L1, L1, L1" },
+  { name: "Hitman in all Weapons", cat: "Weapons", ps: "Down, Square, X, Left, R1, R2, Left, Down, Down, L1, L1, L1" },
+  { name: "Super Bunny Hop", cat: "Player", ps: "Triangle, Square, Circle, Circle, Square, Circle, Circle, L1, L2, L2, R1, R2" },
+  { name: "Super Jump", cat: "Player", ps: "Up, Up, Triangle, Triangle, Up, Up, Left, Right, Square, R2, R2" },
+  { name: "Super Punch", cat: "Player", ps: "Up, Left, X, Triangle, R1, Circle, Circle, Circle, L2" },
+  { name: "Pedestrians Have Guns", cat: "Peds", ps: "R2, R1, X, Triangle, X, Triangle, Up, Down" },
+  { name: "Pedestrians Attack You", cat: "Peds", ps: "Down, Up, Up, Up, X, R2, R1, L2, L2" },
+  { name: "Pedestrians Attack You with Guns", cat: "Peds", ps: "X, L1, Up, Square, Down, X, L2, Triangle, Down, R1, L1, L1" },
+  { name: "Pedestrians Riot", cat: "Peds", ps: "Down, Left, Up, Left, X, R2, R1, L2, L1" },
+  { name: "Pedestrians are Elvis", cat: "Peds", ps: "L1, Circle, Triangle, L1, L1, Square, L2, Up, Down, Left" },
+  { name: "Pedestrians are Gang Members", cat: "Peds", ps: "L2, Up, R1, R1, Left, R1, R1, R2, Right, Down" },
+  { name: "No Pedestrians", cat: "Peds", ps: "X, Down, Up, R2, Down, Triangle, L1, Triangle, Left" },
+  { name: "Recruit Pedestrians with 9mm", cat: "Peds", ps: "Down, Square, Up, R2, R2, Up, Right, Right, Up" },
+  { name: "Prostitutes Pay You", cat: "Peds", ps: "Right, L2, L2, Down, L2, Up, Up, L2, R2" },
+  { name: "Beach Party", cat: "World", ps: "Up, Up, Down, Down, Square, Circle, L1, R1, Triangle, Down" },
+  { name: "Carnival", cat: "World", ps: "Triangle, Triangle, L1, Square, Square, Circle, Square, Down, Circle" },
+  { name: "City in Chaos", cat: "World", ps: "L2, Right, L1, Triangle, Right, Right, R1, L1, Right, L1, L1, L1" },
+  { name: "Faster Gameplay", cat: "World", ps: "Triangle, Up, Right, Down, L2, L1, Square" },
+  { name: "Slower Gameplay", cat: "World", ps: "Triangle, Up, Right, Down, Square, R2, R1" },
+  { name: "Speed Up Time", cat: "Time", ps: "Circle, Circle, L1, Square, L1, Square, Square, Square, L1, Triangle, Circle, Triangle" },
+  { name: "Always 21:00", cat: "Time", ps: "Left, Left, L2, R1, Right, Square, Square, L1, L2, X" },
+  { name: "Always 00:00", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, Triangle" },
+  { name: "Blow Up All Cars", cat: "Vehicles", ps: "R2, L2, R1, L1, L2, R2, Square, Triangle, Circle, Triangle, L2, L1" },
+  { name: "Perfect Handling", cat: "Vehicles", ps: "Triangle, R1, R1, Left, R1, L1, R2, L1" },
+  { name: "Faster Cars", cat: "Vehicles", ps: "Up, L1, R1, Up, Right, Up, X, L2, X, L1" },
+  { name: "Tank Cars (Explode on Contact)", cat: "Vehicles", ps: "L1, L2, L2, Up, Down, Down, Up, R1, R2, R2" },
+  { name: "All Traffic Lights Green", cat: "Vehicles", ps: "Right, R1, Up, L2, L2, Left, R1, L1, R1, R1" },
+  { name: "Aggressive Traffic", cat: "Vehicles", ps: "R2, Circle, R1, L2, Left, R1, L1, R2, L2" },
+  { name: "Pink Traffic", cat: "Vehicles", ps: "Circle, L1, Down, L2, Left, X, R1, L1, Right, Circle" },
+  { name: "Black Traffic", cat: "Vehicles", ps: "Circle, L2, Up, R1, Left, X, R1, L1, Left, Circle" },
+  { name: "Sports Car Traffic", cat: "Vehicles", ps: "Up, L1, R1, Up, Right, Up, X, L2, X, L1" },
+  { name: "Junk Car Traffic", cat: "Vehicles", ps: "L2, Right, L1, Up, X, L1, L2, R2, R1, L1, L1, L1" },
+  { name: "Flying Cars", cat: "Vehicles", ps: "Up, Down, L1, R1, L1, Right, Left, L1, Left" },
+  { name: "Flying Boats", cat: "Vehicles", ps: "R2, Circle, Up, L1, Right, R1, Right, Up, Square, Triangle" },
+  { name: "All Cars Have Nitros", cat: "Vehicles", ps: "Left, Triangle, R1, L1, Up, Square, Triangle, Down, Circle, L2, L1, L1" },
+  { name: "Taxis Bunnyhop", cat: "Vehicles", ps: "Up, X, Triangle, X, Triangle, X, Square, R2, Right" },
+  { name: "Drive on Water", cat: "Vehicles", ps: "Right, R2, Circle, R1, L2, Square, R1, R2" },
+  { name: "Spawn Jetpack", cat: "Spawn", ps: "L1, L2, R1, R2, Up, Down, Left, Right, L1, L2, R1, R2, Up, Down, Left, Right" },
+  { name: "Spawn Tank", cat: "Spawn", ps: "Circle, Circle, L1, Circle, Circle, Circle, L1, L2, R1, Triangle, Circle, Triangle" },
+  { name: "Spawn Monster Truck", cat: "Spawn", ps: "Right, Up, R1, R1, R1, Down, Triangle, Triangle, X, Circle, L1, L1" },
+  { name: "Spawn Parachute", cat: "Spawn", ps: "Left, Right, L1, L2, R1, R2, R2, Up, Down, Right, L1" },
+  { name: "Spawn Caddy", cat: "Spawn", ps: "Circle, L1, Up, R1, L2, X, R1, L1, Circle, X" },
+  { name: "Spawn Dozer", cat: "Spawn", ps: "R2, L1, L1, Right, Right, Up, Up, X, L1, Left" },
+  { name: "Spawn Bloodring Banger", cat: "Spawn", ps: "Down, R1, Circle, L2, L2, X, R1, L1, Left, Left" },
+  { name: "Spawn Hotring Racer 1", cat: "Spawn", ps: "R1, Circle, R2, Right, L1, L2, X, X, Square, R1" },
+  { name: "Spawn Hotring Racer 2", cat: "Spawn", ps: "R2, L1, Circle, Right, L1, R1, Right, Up, Circle, R2" },
+  { name: "Spawn Hunter", cat: "Spawn", ps: "Circle, X, L1, Circle, Circle, L1, Circle, R1, R2, L2, L1, L1" },
+  { name: "Spawn Hydra", cat: "Spawn", ps: "Triangle, Triangle, Square, Circle, X, L1, L1, Down, Up" },
+  { name: "Spawn Limo", cat: "Spawn", ps: "R2, Up, L2, Left, Left, R1, L1, Circle, Right" },
+  { name: "Spawn Quad", cat: "Spawn", ps: "Left, Left, Down, Down, Up, Up, Square, Circle, Triangle, R1, R2" },
+  { name: "Spawn Rancher", cat: "Spawn", ps: "Up, Right, Right, L1, Right, Up, Square, L2" },
+  { name: "Spawn Stunt Plane", cat: "Spawn", ps: "Circle, Up, L1, L2, Down, R1, L1, L1, Left, Left, X, Triangle" },
+  { name: "Spawn Tanker", cat: "Spawn", ps: "R1, Up, Left, Right, R2, Up, Right, Square, Right, L2, L1, L1" },
+  { name: "Spawn Trashmaster", cat: "Spawn", ps: "Circle, R1, Circle, R1, Left, Left, R1, L1, Circle, Right" },
+  { name: "Spawn Vortex", cat: "Spawn", ps: "Triangle, Triangle, Square, Circle, X, L1, L2, Down, Down" },
+  { name: "Rain", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, Circle" },
+  { name: "Sunny", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, Square" },
+  { name: "Very Sunny", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, Down" },
+  { name: "Sandstorm", cat: "Time", ps: "Up, Down, L1, L1, L2, L2, L1, L2, R1, R2" },
+  { name: "Fog", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, X" },
+  { name: "Cloudy", cat: "Time", ps: "L2, Down, Down, Left, Square, Left, R2, Square, X, R1, L1, L1" },
+  { name: "Bobble Head Mode", cat: "World", ps: "Up, Up, Down, Down, Left, Right, Left, Right, Circle, X" },
+];
+
+/* generate Xbox code from PS code */
+function psToXbox(psCode) {
+  const map = {
+    'x': 'A', 'cross': 'A',
+    'circle': 'B',
+    'square': 'X',
+    'triangle': 'Y',
+    'l1': 'LB', 'l2': 'LT',
+    'r1': 'RB', 'r2': 'RT',
+  };
+  return psCode.split(',').map(p => {
+    const t = p.trim().toLowerCase();
+    return map[t] ? ' ' + map[t] : p;
+  }).join(',');
+}
+
+CHEATS.forEach(c => { c.xbox = psToXbox(c.ps); });
+
+/* ════════════════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════════════ */
+let currentCat      = 'all';
+let currentQuery    = '';
+let currentPlatform = 'ps';   // 'ps' | 'xbox'
+let sortAZ          = false;
+let listView        = false;
+let favorites       = new Set(JSON.parse(localStorage.getItem('sa_favs') || '[]'));
+
+function saveFavs() {
+  localStorage.setItem('sa_favs', JSON.stringify([...favorites]));
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   BUTTON PILLS
+═══════════════════════════════════════════════════════════════════ */
+const PS_CLASS = {
+  'x':'btn-cross','cross':'btn-cross','circle':'btn-circle',
+  'square':'btn-square','triangle':'btn-triangle',
+  'r1':'btn-r1','r2':'btn-r2','l1':'btn-l1','l2':'btn-l2',
+};
+const XBOX_CLASS = {
+  'a':'btn-a','b':'btn-b','x':'btn-x','y':'btn-y',
+  'rb':'btn-rb','rt':'btn-rt','lb':'btn-lb','lt':'btn-lt',
+};
+const PS_LABEL = {
+  'x':'✕','cross':'✕','circle':'○','square':'□','triangle':'△',
+  'up':'↑','down':'↓','left':'←','right':'→',
+  'r1':'R1','r2':'R2','l1':'L1','l2':'L2',
+};
+const XBOX_LABEL = {
+  'a':'A','b':'B','x':'X','y':'Y',
+  'rb':'RB','rt':'RT','lb':'LB','lt':'LT',
+  'up':'↑','down':'↓','left':'←','right':'→',
+};
+
+function getBtnClass(b) {
+  b = b.trim().toLowerCase();
+  if (currentPlatform === 'ps') return PS_CLASS[b] || 'btn-dir';
+  return XBOX_CLASS[b] || 'btn-dir';
+}
+function getBtnLabel(b) {
+  b = b.trim().toLowerCase();
+  if (currentPlatform === 'ps') return PS_LABEL[b] || b.toUpperCase();
+  return XBOX_LABEL[b] || b.toUpperCase();
+}
+function parseCode(code) {
+  return code.split(',').map(p => {
+    p = p.trim();
+    return `<span class="btn-pill ${getBtnClass(p)}">${getBtnLabel(p)}</span>`;
+  }).join('');
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════════════════════════ */
+function toast(msg, type = 'success', icon = '✓') {
+  const container = document.getElementById('toast-container');
+  const el = document.createElement('div');
+  el.className = `toast type-${type}`;
+  el.innerHTML = `<span class="toast-icon">${icon}</span><span>${msg}</span>`;
+  container.appendChild(el);
+  setTimeout(() => {
+    el.classList.add('remove');
+    setTimeout(() => el.remove(), 320);
+  }, 2200);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   HIGHLIGHT
+═══════════════════════════════════════════════════════════════════ */
+function highlight(text, query) {
+  if (!query) return text;
+  const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   BUILD CARD
+═══════════════════════════════════════════════════════════════════ */
+function buildCard(ch, query) {
+  const card = document.createElement('div');
+  const isFav = favorites.has(ch.name);
+  const code = currentPlatform === 'ps' ? ch.ps : ch.xbox;
+  card.className = 'card' + (isFav ? ' is-fav' : '');
+
+  if (listView) {
+    card.innerHTML = `
+      <div class="card-left">
+        <div class="card-category">${ch.cat}</div>
+        <div class="card-name">${highlight(ch.name, query)}</div>
+      </div>
+      <div class="card-code-wrap">
+        <div class="card-code ${currentPlatform === 'xbox' ? 'xbox' : ''}">${parseCode(code)}</div>
+      </div>
+      <div class="card-actions">
+        <button class="fav-btn ${isFav ? 'active' : ''}" data-name="${ch.name}" title="Favorite">★</button>
+        <button class="copy-btn" data-code="${code}">COPY</button>
+      </div>
+    `;
+  } else {
+    card.innerHTML = `
+      <div class="card-actions">
+        <button class="fav-btn ${isFav ? 'active' : ''}" data-name="${ch.name}" title="Favorite">★</button>
+        <button class="copy-btn" data-code="${code}">COPY</button>
+      </div>
+      <div class="card-category">${ch.cat}</div>
+      <div class="card-name">${highlight(ch.name, query)}</div>
+      <div class="card-code ${currentPlatform === 'xbox' ? 'xbox' : ''}">${parseCode(code)}</div>
+    `;
+  }
+
+  card.querySelector('.copy-btn').addEventListener('click', e => {
+    const btn = e.currentTarget;
+    navigator.clipboard.writeText(btn.dataset.code).then(() => {
+      btn.textContent = 'COPIED';
+      btn.classList.add('copied');
+      toast(`Copied: <strong>${ch.name}</strong>`, 'success', '📋');
+      setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('copied'); }, 1600);
+    });
+  });
+
+  card.querySelector('.fav-btn').addEventListener('click', e => {
+    const name = e.currentTarget.dataset.name;
+    if (favorites.has(name)) {
+      favorites.delete(name);
+      toast(`Removed from favorites`, 'info', '☆');
+    } else {
+      favorites.add(name);
+      toast(`Added to favorites`, 'accent', '★');
+    }
+    saveFavs();
+    renderFavs();
+    applyFilters();
+  });
+
+  return card;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   RENDER FAVS
+═══════════════════════════════════════════════════════════════════ */
+function renderFavs() {
+  const section = document.getElementById('favSection');
+  const grid    = document.getElementById('favGrid');
+  const countEl = document.getElementById('favCount');
+  grid.innerHTML = '';
+
+  if (favorites.size === 0) {
+    section.classList.remove('has-favs');
+    return;
+  }
+  section.classList.add('has-favs');
+  countEl.textContent = `${favorites.size} saved`;
+
+  CHEATS.filter(c => favorites.has(c.name)).forEach(ch => {
+    const card = buildCard(ch, '');
+    card.style.animation = 'none';
+    grid.appendChild(card);
+  });
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   RENDER CARDS
+═══════════════════════════════════════════════════════════════════ */
+function renderCards(list, query) {
+  const grid    = document.getElementById('grid');
+  const noRes   = document.getElementById('noResults');
+  const countEl = document.getElementById('countNum');
+
+  [...grid.querySelectorAll('.card')].forEach(c => c.remove());
+  countEl.textContent = list.length;
+
+  if (list.length === 0) {
+    noRes.style.display = 'block';
+    return;
+  }
+  noRes.style.display = 'none';
+
+  list.forEach((ch, i) => {
+    const card = buildCard(ch, query);
+    card.style.animationDelay = `${Math.min(i * 18, 180)}ms`;
+    grid.insertBefore(card, noRes);
+  });
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   APPLY FILTERS
+═══════════════════════════════════════════════════════════════════ */
+function applyFilters() {
+  let list = [...CHEATS];
+  if (currentCat !== 'all') list = list.filter(c => c.cat === currentCat);
+  if (currentQuery) {
+    const q = currentQuery.toLowerCase();
+    list = list.filter(c =>
+      c.name.toLowerCase().includes(q) ||
+      c.ps.toLowerCase().includes(q) ||
+      c.cat.toLowerCase().includes(q)
+    );
+  }
+  if (sortAZ) list.sort((a, b) => a.name.localeCompare(b.name));
+  renderCards(list, currentQuery);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   CATEGORY COUNTS
+═══════════════════════════════════════════════════════════════════ */
+function updateCatCounts() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    const cat = btn.dataset.cat;
+    const count = cat === 'all' ? CHEATS.length : CHEATS.filter(c => c.cat === cat).length;
+    let span = btn.querySelector('.cat-count');
+    if (!span) {
+      span = document.createElement('span');
+      span.className = 'cat-count';
+      btn.appendChild(span);
+    }
+    span.textContent = count;
+  });
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   EVENTS
+═══════════════════════════════════════════════════════════════════ */
+
+// Search
+const searchEl = document.getElementById('search');
+const clearBtn = document.getElementById('searchClear');
+searchEl.addEventListener('input', e => {
+  currentQuery = e.target.value.trim();
+  clearBtn.classList.toggle('visible', currentQuery.length > 0);
+  applyFilters();
+});
+clearBtn.addEventListener('click', () => {
+  searchEl.value = '';
+  currentQuery = '';
+  clearBtn.classList.remove('visible');
+  searchEl.focus();
+  applyFilters();
+});
+
+// Filters
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCat = btn.dataset.cat;
+    applyFilters();
+  });
+});
+
+// Platform
+document.querySelectorAll('.platform-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentPlatform = btn.dataset.platform;
+    const isPlatformPS = currentPlatform === 'ps';
+    toast(`Switched to ${isPlatformPS ? 'PlayStation' : 'Xbox'} layout`, 'info', isPlatformPS ? '🎮' : '🟢');
+    renderFavs();
+    applyFilters();
+  });
+});
+
+// Theme toggle
+document.getElementById('themeToggle').addEventListener('click', () => {
+  document.documentElement.classList.toggle('light');
+  const isLight = document.documentElement.classList.contains('light');
+  document.getElementById('themeToggle').textContent = isLight ? '☀️' : '🌙';
+});
+
+// Sort
+document.getElementById('sortBtn').addEventListener('click', () => {
+  sortAZ = !sortAZ;
+  document.getElementById('sortBtn').classList.toggle('active', sortAZ);
+  document.getElementById('sortBtn').textContent = sortAZ ? 'Z↓' : 'A↓';
+  applyFilters();
+});
+
+// View toggle
+document.getElementById('gridViewBtn').addEventListener('click', () => {
+  listView = false;
+  document.getElementById('grid').classList.remove('list-view');
+  document.getElementById('gridViewBtn').classList.add('active');
+  document.getElementById('listViewBtn').classList.remove('active');
+  applyFilters();
+});
+document.getElementById('listViewBtn').addEventListener('click', () => {
+  listView = true;
+  document.getElementById('grid').classList.add('list-view');
+  document.getElementById('listViewBtn').classList.add('active');
+  document.getElementById('gridViewBtn').classList.remove('active');
+  applyFilters();
+});
+
+// Random cheat
+document.getElementById('randomBtn').addEventListener('click', () => {
+  const random = CHEATS[Math.floor(Math.random() * CHEATS.length)];
+  searchEl.value = random.name;
+  currentQuery = random.name;
+  clearBtn.classList.add('visible');
+  // reset cat filter
+  currentCat = 'all';
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.filter-btn[data-cat="all"]').classList.add('active');
+  applyFilters();
+  toast(`Random: <strong>${random.name}</strong>`, 'accent', '🎲');
+});
+
+// Export favs
+document.getElementById('exportBtn').addEventListener('click', () => {
+  if (favorites.size === 0) {
+    toast('No favorites saved yet — star some cheats first!', 'info', '★');
+    return;
+  }
+  const lines = CHEATS
+    .filter(c => favorites.has(c.name))
+    .map(c => `${c.name}\n  PS:   ${c.ps}\n  Xbox: ${c.xbox}`);
+  const text = `GTA San Andreas — Saved Cheats\n${'═'.repeat(40)}\n\n${lines.join('\n\n')}`;
+  navigator.clipboard.writeText(text).then(() => {
+    toast(`${favorites.size} cheat${favorites.size > 1 ? 's' : ''} copied to clipboard!`, 'success', '📤');
+  });
+});
+
+// Clear favs
+document.getElementById('clearFavsBtn').addEventListener('click', () => {
+  favorites.clear();
+  saveFavs();
+  renderFavs();
+  applyFilters();
+  toast('Favorites cleared', 'info', '🗑');
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== searchEl) {
+    e.preventDefault();
+    searchEl.focus();
+    searchEl.select();
+  }
+  if (e.key === 'Escape' && document.activeElement === searchEl) {
+    searchEl.value = '';
+    currentQuery = '';
+    clearBtn.classList.remove('visible');
+    searchEl.blur();
+    applyFilters();
+  }
+});
+
+// Scroll to top
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+});
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ════════════════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════════════ */
+updateCatCounts();
+renderFavs();
+applyFilters();
+</script>
+</body>
+</html>
