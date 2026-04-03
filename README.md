@@ -2,7 +2,7 @@
 
 A clean, fast, single-file cheat code reference for **GTA San Andreas** — built for PS4/PS5 and Xbox. No frameworks, no dependencies, just one HTML file.
 
-**[▶ Live Demo](https://ahmed-rade.github.io/sa-cheats)**
+**[▶ Live Demo](https://zengm5057-sudo.github.io/sa-cheats)**
 
 ---
 
@@ -45,7 +45,7 @@ A clean, fast, single-file cheat code reference for **GTA San Andreas** — buil
 **Step 1 — Create the repo**
 ```bash
 git init
-git remote add origin https://github.com/Ahmed-Rade/sa-cheats.git
+git remote add origin https://github.com/zengm5057-sudo/sa-cheats.git
 ```
 
 **Step 2 — Add and commit**
@@ -62,7 +62,7 @@ git push -u origin main
 - Branch: `main` / root
 - Click **Save**
 
-Your site will be live at: `https://ahmed-rade.github.io/sa-cheats`
+Your site will be live at: `https://zengm5057-sudo.github.io/sa-cheats`
 
 ---
 
@@ -112,4 +112,4 @@ MIT — free to use, fork, and modify.
 
 ---
 
-*Built by [Ahmed Rade](https://github.com/Ahmed-Rade)*
+*Built by [Ahmed Rade](https://github.com/zengm5057-sudo)*
