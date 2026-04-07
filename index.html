@@ -2,221 +2,190 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>SA Cheats — GTA San Andreas</title>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Barlow+Condensed:wght@300;400;600;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ─── VARIABLES ── */
+/* ══════════════════════════════════════════════
+   VARIABLES
+══════════════════════════════════════════════ */
 :root {
-  --bg:           #070709;
-  --surface:      #0d0d12;
-  --card:         #0f0f15;
-  --card-hover:   #141420;
-  --border:       #1a1a26;
-  --border-hi:    #252535;
-  --accent:       #f0522a;
-  --accent2:      #fbbf24;
-  --accent3:      #34d399;
-  --text:         #dddde8;
-  --muted:        #46465c;
-  --muted2:       #7878a0;
-  --tag-bg:       #14141f;
-  --glow:         rgba(240,82,42,0.14);
-  --glow2:        rgba(240,82,42,0.06);
-  --tr:           0.18s ease;
+  --bg:         #070709;
+  --surface:    #0d0d12;
+  --card:       #0f0f15;
+  --card-hover: #141420;
+  --border:     #1a1a26;
+  --border-hi:  #252535;
+  --accent:     #f0522a;
+  --accent2:    #fbbf24;
+  --accent3:    #34d399;
+  --text:       #dddde8;
+  --muted:      #46465c;
+  --muted2:     #7878a0;
+  --tag-bg:     #14141f;
+  --glow:       rgba(240,82,42,0.14);
+  --tr:         0.18s ease;
+
+  /* fluid spacing tokens */
+  --s1: clamp(4px,  0.5vw, 8px);
+  --s2: clamp(8px,  1vw,   16px);
+  --s3: clamp(12px, 1.5vw, 24px);
+  --s4: clamp(16px, 2vw,   32px);
+
+  /* fluid card column width: shrink on phone, grow on big screen */
+  --card-min: clamp(200px, 22vw, 320px);
 }
 :root.light {
-  --bg:           #f0eff5;
-  --surface:      #e4e3ef;
-  --card:         #fafafe;
-  --card-hover:   #ffffff;
-  --border:       #d0cfdf;
-  --border-hi:    #b8b7cc;
-  --accent:       #d43a16;
-  --accent2:      #b07d10;
-  --accent3:      #16a37a;
-  --text:         #14141e;
-  --muted:        #9898b4;
-  --muted2:       #606078;
-  --tag-bg:       #e0dfed;
-  --glow:         rgba(240,82,42,0.1);
-  --glow2:        rgba(240,82,42,0.04);
+  --bg:         #f0eff5;
+  --surface:    #e4e3ef;
+  --card:       #fafafe;
+  --card-hover: #ffffff;
+  --border:     #d0cfdf;
+  --border-hi:  #b8b7cc;
+  --accent:     #d43a16;
+  --accent2:    #b07d10;
+  --accent3:    #16a37a;
+  --text:       #14141e;
+  --muted:      #9898b4;
+  --muted2:     #606078;
+  --tag-bg:     #e0dfed;
+  --glow:       rgba(240,82,42,0.10);
 }
 
-/* ─── RESET ── */
+/* ══════════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-
-/* ─── BODY ── */
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 400;
-  min-height: 100vh;
-  overflow-x: hidden;
-  transition: background var(--tr), color var(--tr);
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Barlow Condensed',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:background var(--tr),color var(--tr);
 }
 
-/* Noise texture overlay */
-body::before {
-  content:'';
-  position:fixed;inset:0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:999;opacity:0.55;
+/* noise */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:999;opacity:.55;
 }
-
-/* Diagonal stripe texture */
-body::after {
-  content:'';
-  position:fixed;inset:0;
-  background: repeating-linear-gradient(
-    -55deg,
-    transparent,
-    transparent 24px,
-    rgba(240,82,42,0.018) 24px,
-    rgba(240,82,42,0.018) 25px
-  );
+/* diagonal stripes */
+body::after{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(-55deg,transparent,transparent 24px,rgba(240,82,42,.018) 24px,rgba(240,82,42,.018) 25px);
   pointer-events:none;z-index:0;
 }
 
-/* ─── HEADER ── */
-header {
+/* ══════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════ */
+header{
   position:relative;
-  padding: 52px 24px 36px;
-  text-align:center;
-  z-index:1;
-  overflow:hidden;
+  padding:clamp(32px,6vw,64px) var(--s4) clamp(24px,4vw,40px);
+  text-align:center;z-index:1;overflow:hidden;
 }
-
-.header-orb {
-  position:absolute;
-  top:-80px;left:50%;
-  transform:translateX(-50%);
-  width:700px;height:340px;
-  background: radial-gradient(ellipse at 50% 30%, rgba(240,82,42,0.18) 0%, rgba(240,82,42,0.04) 45%, transparent 70%);
+.header-orb{
+  position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+  width:min(900px,140vw);height:clamp(200px,35vw,400px);
+  background:radial-gradient(ellipse at 50% 30%,rgba(240,82,42,.2) 0%,rgba(240,82,42,.04) 45%,transparent 70%);
   pointer-events:none;
 }
-
-.header-stripe {
-  position:absolute;
-  top:0;left:0;right:0;
-  height:3px;
-  background: linear-gradient(90deg, transparent 0%, var(--accent) 30%, var(--accent2) 60%, transparent 100%);
-  opacity: 0.8;
+.header-stripe{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent 0%,var(--accent) 30%,var(--accent2) 60%,transparent 100%);
+  opacity:.8;
 }
-
-.header-actions {
-  position:absolute;
-  top:20px;right:20px;
-  display:flex;gap:7px;align-items:center;
-  z-index:2;
+.header-actions{
+  position:absolute;top:clamp(12px,2vw,20px);right:clamp(12px,2vw,20px);
+  display:flex;gap:7px;align-items:center;z-index:2;
 }
-
-.icon-btn {
-  background:var(--surface);
-  border:1px solid var(--border);
-  color:var(--muted2);
-  width:32px;height:32px;
-  border-radius:4px;
-  cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;
-  transition:all var(--tr);
+.icon-btn{
+  background:var(--surface);border:1px solid var(--border);color:var(--muted2);
+  width:clamp(28px,3.5vw,36px);height:clamp(28px,3.5vw,36px);
+  border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(12px,1.5vw,16px);transition:all var(--tr);
 }
 .icon-btn:hover{border-color:var(--accent);color:var(--accent);}
 
-.logo-wrap {
-  display:inline-block;
-  position:relative;
-}
-.logo {
+.logo{
   font-family:'Black Han Sans',sans-serif;
-  font-size: clamp(52px, 11vw, 96px);
-  letter-spacing: -1px;
-  line-height: 0.92;
-  color: var(--text);
-  position: relative;
+  font-size:clamp(44px,10vw,110px);
+  letter-spacing:-1px;line-height:.92;color:var(--text);
 }
-.logo span.accent-word {
-  color: var(--accent);
-  position:relative;
+.logo .accent-word{
+  color:var(--accent);position:relative;
 }
-/* underline slash accent */
-.logo span.accent-word::after {
-  content:'';
-  position:absolute;
-  bottom:-4px;left:0;right:0;
-  height:4px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
+.logo .accent-word::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:clamp(3px,.4vw,5px);
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
   border-radius:2px;
 }
-
-.subtitle {
-  font-family:'Fira Code', monospace;
-  font-size:10px;
-  color:var(--muted);
-  letter-spacing:5px;
-  text-transform:uppercase;
-  margin-top:14px;
-}
-
-.header-badges {
-  display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
-  margin-top:14px;
-}
-.badge {
+.subtitle{
   font-family:'Fira Code',monospace;
-  font-size:9px;
-  letter-spacing:1.5px;
-  padding:4px 11px;
-  border-radius:2px;
-  text-transform:uppercase;
+  font-size:clamp(8px,.9vw,11px);
+  color:var(--muted);letter-spacing:clamp(3px,.5vw,6px);
+  text-transform:uppercase;margin-top:clamp(10px,1.5vw,16px);
 }
-.badge-ps   {background:rgba(0,80,255,0.12);border:1px solid rgba(0,80,255,0.3);color:#6699ff;}
-.badge-xbox {background:rgba(16,200,16,0.1);border:1px solid rgba(16,200,16,0.3);color:#4dcc4d;}
-.badge-ver  {background:rgba(240,82,42,0.1);border:1px solid rgba(240,82,42,0.3);color:var(--accent);}
-
-.header-divider {
+.header-badges{
+  display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
+  margin-top:clamp(10px,1.5vw,16px);
+}
+.badge{
+  font-family:'Fira Code',monospace;
+  font-size:clamp(7px,.75vw,10px);
+  letter-spacing:1.5px;padding:4px 11px;border-radius:2px;text-transform:uppercase;
+}
+.badge-ps  {background:rgba(0,80,255,.12);border:1px solid rgba(0,80,255,.3);color:#6699ff;}
+.badge-xbox{background:rgba(16,200,16,.1);border:1px solid rgba(16,200,16,.3);color:#4dcc4d;}
+.badge-ver {background:rgba(240,82,42,.1);border:1px solid rgba(240,82,42,.3);color:var(--accent);}
+.header-divider{
   height:1px;
   background:linear-gradient(90deg,transparent,var(--accent) 35%,var(--accent2) 65%,transparent);
-  margin-top:30px;opacity:0.35;
+  margin-top:clamp(18px,3vw,32px);opacity:.35;
 }
 
-/* ─── PLATFORM BAR ── */
-.platform-bar {
-  max-width:980px;
-  margin:28px auto 0;
-  padding:0 16px;
-  display:flex;align-items:center;justify-content:center;gap:0;
-  z-index:1;position:relative;
+/* ══════════════════════════════════════════════
+   LAYOUT WRAPPER — all sections max-width fluid
+══════════════════════════════════════════════ */
+.shell{
+  max-width:min(1800px,96vw);
+  margin:0 auto;
+  padding:0 var(--s3);
+  position:relative;z-index:1;
 }
-.platform-btn {
-  background:var(--surface);
-  border:1px solid var(--border);
-  color:var(--muted2);
+
+/* ══════════════════════════════════════════════
+   PLATFORM BAR
+══════════════════════════════════════════════ */
+.platform-bar{
+  display:flex;align-items:center;justify-content:center;gap:0;
+  margin-top:clamp(16px,2.5vw,32px);
+}
+.platform-btn{
+  background:var(--surface);border:1px solid var(--border);color:var(--muted2);
   font-family:'Fira Code',monospace;
-  font-size:10px;letter-spacing:2px;text-transform:uppercase;
-  padding:9px 22px;
-  cursor:pointer;
-  transition:all var(--tr);
-  display:flex;align-items:center;gap:8px;
+  font-size:clamp(9px,1vw,11px);letter-spacing:2px;text-transform:uppercase;
+  padding:clamp(7px,1vw,11px) clamp(14px,2vw,26px);
+  cursor:pointer;transition:all var(--tr);display:flex;align-items:center;gap:8px;
 }
 .platform-btn:first-child{border-radius:3px 0 0 3px;}
 .platform-btn:last-child {border-radius:0 3px 3px 0;}
-.platform-btn.active.ps   {background:rgba(0,80,255,0.16);border-color:rgba(0,80,255,0.45);color:#6699ff;}
-.platform-btn.active.xbox {background:rgba(16,200,16,0.14);border-color:rgba(16,200,16,0.45);color:#4dcc4d;}
+.platform-btn.active.ps  {background:rgba(0,80,255,.16);border-color:rgba(0,80,255,.45);color:#6699ff;}
+.platform-btn.active.xbox{background:rgba(16,200,16,.14);border-color:rgba(16,200,16,.45);color:#4dcc4d;}
 .platform-btn:not(.active):hover{border-color:var(--border-hi);color:var(--text);}
 
-/* ─── CONTROLS ── */
-.controls {
-  max-width:980px;
-  margin:18px auto 0;
-  padding:0 16px;
-  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
-  position:relative;z-index:2;
+/* ══════════════════════════════════════════════
+   CONTROLS
+══════════════════════════════════════════════ */
+.controls{
+  display:flex;gap:var(--s2);flex-wrap:wrap;align-items:center;
+  margin-top:clamp(12px,1.5vw,20px);
 }
-.search-wrap{flex:1;min-width:220px;position:relative;}
+.search-wrap{flex:1;min-width:min(220px,100%);position:relative;}
 .search-wrap .s-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;}
 .search-clear{
   position:absolute;right:10px;top:50%;transform:translateY(-50%);
@@ -225,299 +194,322 @@ header {
 }
 .search-clear:hover{color:var(--accent);}
 .search-clear.visible{display:block;}
-
-#search {
-  width:100%;
-  background:var(--surface);
-  border:1px solid var(--border);
-  color:var(--text);
-  font-family:'Fira Code',monospace;
-  font-size:12px;
-  padding:11px 36px 11px 40px;
-  border-radius:3px;
-  outline:none;
-  transition:border-color var(--tr),box-shadow var(--tr);
+#search{
+  width:100%;background:var(--surface);border:1px solid var(--border);
+  color:var(--text);font-family:'Fira Code',monospace;
+  font-size:clamp(10px,1.1vw,13px);
+  padding:clamp(8px,1vw,12px) 36px clamp(8px,1vw,12px) 40px;
+  border-radius:3px;outline:none;transition:border-color var(--tr),box-shadow var(--tr);
 }
 #search:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--glow);}
 #search::placeholder{color:var(--muted);}
-
-.ctrl-actions{display:flex;gap:6px;align-items:center;}
-.action-btn {
-  background:var(--surface);
-  border:1px solid var(--border);
-  color:var(--muted2);
+.ctrl-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.action-btn{
+  background:var(--surface);border:1px solid var(--border);color:var(--muted2);
   font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  padding:8px 14px;border-radius:3px;cursor:pointer;
-  transition:all var(--tr);
+  font-size:clamp(11px,1.2vw,14px);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:clamp(6px,.8vw,10px) clamp(10px,1.4vw,16px);
+  border-radius:3px;cursor:pointer;transition:all var(--tr);
   display:flex;align-items:center;gap:5px;white-space:nowrap;
 }
 .action-btn:hover{border-color:var(--accent);color:var(--accent);}
-.action-btn.accent{border-color:rgba(240,82,42,0.4);color:var(--accent);background:rgba(240,82,42,0.08);}
-.action-btn.accent:hover{background:rgba(240,82,42,0.16);}
+.action-btn.accent{border-color:rgba(240,82,42,.4);color:var(--accent);background:rgba(240,82,42,.08);}
+.action-btn.accent:hover{background:rgba(240,82,42,.16);}
 
-/* ─── FILTER BAR ── */
-.filter-bar {
-  max-width:980px;
-  margin:10px auto 0;
-  padding:0 16px;
+/* ══════════════════════════════════════════════
+   FILTER BAR
+══════════════════════════════════════════════ */
+.filter-bar{
   display:flex;gap:5px;flex-wrap:wrap;align-items:center;
-  position:relative;z-index:1;
+  margin-top:clamp(8px,1vw,14px);
 }
-.filter-btn {
-  background:var(--surface);
-  border:1px solid var(--border);
-  color:var(--muted2);
+.filter-btn{
+  background:var(--surface);border:1px solid var(--border);color:var(--muted2);
   font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  padding:6px 13px;border-radius:3px;cursor:pointer;
-  transition:all var(--tr);
+  font-size:clamp(11px,1.2vw,14px);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:clamp(5px,.6vw,8px) clamp(10px,1.2vw,15px);
+  border-radius:3px;cursor:pointer;transition:all var(--tr);
   display:flex;align-items:center;gap:6px;
 }
-.filter-btn .cat-count {
+.filter-btn .cat-count{
   font-family:'Fira Code',monospace;font-size:8px;
   background:var(--tag-bg);padding:1px 5px;border-radius:2px;color:var(--muted);
 }
 .filter-btn:hover{border-color:var(--accent);color:var(--accent);}
-.filter-btn:hover .cat-count{background:rgba(240,82,42,0.1);}
+.filter-btn:hover .cat-count{background:rgba(240,82,42,.1);}
 .filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
-.filter-btn.active .cat-count{background:rgba(0,0,0,0.25);color:rgba(255,255,255,0.8);}
+.filter-btn.active .cat-count{background:rgba(0,0,0,.25);color:rgba(255,255,255,.8);}
 
-/* ─── STATUS BAR ── */
-.status-bar {
-  max-width:980px;
-  margin:12px auto 0;
-  padding:0 16px;
+/* ══════════════════════════════════════════════
+   STATUS BAR
+══════════════════════════════════════════════ */
+.status-bar{
   display:flex;align-items:center;justify-content:space-between;
-  position:relative;z-index:1;
+  margin-top:clamp(8px,1.2vw,16px);
 }
-.count-info {
-  font-family:'Fira Code',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;
-}
+.count-info{font-family:'Fira Code',monospace;font-size:clamp(9px,1vw,11px);color:var(--muted);letter-spacing:1px;}
 .count-info strong{color:var(--accent);font-weight:500;}
 .view-sort{display:flex;gap:5px;}
-.vs-btn {
+.vs-btn{
   background:var(--surface);border:1px solid var(--border);color:var(--muted2);
-  width:28px;height:28px;border-radius:3px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-size:13px;
-  transition:all var(--tr);
+  width:clamp(24px,3vw,32px);height:clamp(24px,3vw,32px);
+  border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(11px,1.3vw,15px);transition:all var(--tr);
 }
-.vs-btn:hover,.vs-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(240,82,42,0.08);}
+.vs-btn:hover,.vs-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(240,82,42,.08);}
 
-/* ─── FAVORITES ── */
-.fav-section {
-  max-width:980px;margin:28px auto 0;padding:0 16px;
-  display:none;position:relative;z-index:1;
+/* ══════════════════════════════════════════════
+   GRID — THE STAR
+   auto-fill with fluid min column width:
+   320px phone  → 1 col
+   600px tablet → 2 col
+   900px        → 3 col
+   1200px       → 4 col
+   1600px       → 5 col
+   2400px       → 6-7 col
+══════════════════════════════════════════════ */
+.fav-section{
+  margin-top:clamp(18px,3vw,36px);
+  display:none;
 }
 .fav-section.has-favs{display:block;}
-.fav-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.fav-title {
+.fav-header{display:flex;align-items:center;gap:10px;margin-bottom:clamp(8px,1.2vw,14px);}
+.fav-title{
   font-family:'Black Han Sans',sans-serif;
-  font-size:18px;letter-spacing:2px;color:var(--accent2);
+  font-size:clamp(15px,2vw,20px);letter-spacing:2px;color:var(--accent2);
 }
 .fav-meta{font-family:'Fira Code',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;}
 .fav-actions{margin-left:auto;display:flex;gap:5px;}
-.fav-grid {
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:10px;
-  margin-bottom:8px;
-}
-.fav-divider {
-  height:1px;
-  background:linear-gradient(90deg,rgba(251,191,36,0.22),transparent);
-  margin:24px 0 0;
-}
+.fav-divider{height:1px;background:linear-gradient(90deg,rgba(251,191,36,.22),transparent);margin:clamp(16px,2.5vw,28px) 0 0;}
 
-/* ─── MAIN GRID ── */
-.grid-wrap {
-  max-width:980px;margin:18px auto 100px;padding:0 16px;
-  position:relative;z-index:1;
-}
-.grid {
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:10px;
-}
-.grid.list-view{grid-template-columns:1fr;gap:6px;}
+.grid-wrap{margin-top:clamp(12px,1.5vw,20px);padding-bottom:clamp(60px,10vw,120px);}
 
-/* ─── CARD ── */
-.card {
+.grid,.fav-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(var(--card-min),1fr));
+  gap:clamp(6px,.8vw,14px);
+}
+.grid.list-view{grid-template-columns:1fr;gap:clamp(4px,.5vw,8px);}
+
+/* ══════════════════════════════════════════════
+   CARD
+══════════════════════════════════════════════ */
+.card{
   background:var(--card);
   border:1px solid var(--border);
   border-radius:4px;
-  padding:18px 18px 16px;
+  padding:clamp(12px,1.6vw,20px) clamp(12px,1.6vw,20px) clamp(10px,1.4vw,18px);
   position:relative;overflow:hidden;
-  transition:border-color var(--tr),transform 0.14s ease,box-shadow var(--tr),background var(--tr);
+  transition:border-color var(--tr),transform .14s ease,box-shadow var(--tr),background var(--tr),opacity .22s ease;
   cursor:default;
-  animation:fadeIn 0.32s ease both;
+  animation:fadeUp .3s ease both;
+  /* performance */
+  will-change:transform;
+  contain:layout style;
 }
-/* accent corner tag */
-.card::before {
+/* shimmer sweep on hover */
+.card::before{
   content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(240,82,42,.07) 50%,transparent 60%);
+  transform:translateX(-100%);
+  transition:transform .5s ease;
+  pointer-events:none;z-index:0;
+}
+/* left accent bar */
+.card::after{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:100%;
+  background:var(--accent);opacity:0;
+  transition:opacity var(--tr);border-radius:0 0 0 4px;
+}
+/* corner dog-ear */
+.card-corner{
   position:absolute;top:0;right:0;
   width:0;height:0;
   border-style:solid;
-  border-width:0 24px 24px 0;
+  border-width:0 clamp(18px,2vw,26px) clamp(18px,2vw,26px) 0;
   border-color:transparent var(--border) transparent transparent;
   transition:border-color var(--tr);
 }
-/* left accent bar */
-.card::after {
-  content:'';
-  position:absolute;top:0;left:0;
-  width:3px;height:100%;
-  background:var(--accent);
-  opacity:0;
-  transition:opacity var(--tr);
-  border-radius:0 0 0 4px;
-}
-.card:hover {
+.card:hover{
   background:var(--card-hover);
-  border-color:rgba(240,82,42,0.3);
-  transform:translateY(-2px);
-  box-shadow:0 10px 32px rgba(0,0,0,0.5),0 0 0 1px rgba(240,82,42,0.06),0 0 20px rgba(240,82,42,0.04);
+  border-color:rgba(240,82,42,.35);
+  transform:translateY(-3px) scale(1.01);
+  box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 0 1px rgba(240,82,42,.06),0 0 28px rgba(240,82,42,.05);
+  z-index:2;
 }
-.card:hover::before{border-color:transparent rgba(240,82,42,0.4) transparent transparent;}
+.card:hover::before{transform:translateX(100%);}
 .card:hover::after{opacity:1;}
-.card.is-fav{border-color:rgba(251,191,36,0.24);}
+.card:hover .card-corner{border-color:transparent rgba(240,82,42,.45) transparent transparent;}
+.card.is-fav{border-color:rgba(251,191,36,.24);}
 .card.is-fav::after{background:var(--accent2);opacity:1;}
-.card.is-fav::before{border-color:transparent rgba(251,191,36,0.35) transparent transparent;}
+.card.is-fav .card-corner{border-color:transparent rgba(251,191,36,.35) transparent transparent;}
 
-.card-actions {
-  position:absolute;top:13px;right:13px;
-  display:flex;gap:5px;align-items:center;
+/* card contents above pseudo-elements */
+.card-actions,
+.card-category,
+.card-name,
+.card-code{position:relative;z-index:1;}
+
+.card-actions{
+  position:absolute;top:clamp(8px,1vw,14px);right:clamp(8px,1vw,14px);
+  display:flex;gap:4px;align-items:center;z-index:2;
 }
-.fav-btn {
+.fav-btn{
   background:none;border:1px solid var(--border);color:var(--muted);
-  font-size:12px;width:25px;height:25px;border-radius:3px;cursor:pointer;
+  font-size:clamp(10px,1.2vw,13px);
+  width:clamp(22px,2.8vw,28px);height:clamp(22px,2.8vw,28px);
+  border-radius:3px;cursor:pointer;
   transition:all var(--tr);display:flex;align-items:center;justify-content:center;
   line-height:1;padding:0;
 }
 .fav-btn:hover{border-color:var(--accent2);color:var(--accent2);}
-.fav-btn.active{border-color:var(--accent2);color:var(--accent2);background:rgba(251,191,36,0.1);}
-
-.copy-btn {
+.fav-btn.active{border-color:var(--accent2);color:var(--accent2);background:rgba(251,191,36,.1);}
+.copy-btn{
   background:none;border:1px solid var(--border);color:var(--muted);
-  font-family:'Fira Code',monospace;font-size:8px;letter-spacing:1px;
-  padding:4px 8px;border-radius:3px;cursor:pointer;
-  transition:all var(--tr);text-transform:uppercase;
+  font-family:'Fira Code',monospace;
+  font-size:clamp(7px,.75vw,9px);letter-spacing:1px;
+  padding:clamp(3px,.4vw,5px) clamp(6px,.8vw,10px);
+  border-radius:3px;cursor:pointer;transition:all var(--tr);text-transform:uppercase;
 }
 .copy-btn:hover{border-color:var(--accent);color:var(--accent);}
-.copy-btn.copied{border-color:var(--accent3);color:var(--accent3);background:rgba(52,211,153,0.08);}
+.copy-btn.copied{border-color:var(--accent3);color:var(--accent3);background:rgba(52,211,153,.08);}
 
-.card-category {
-  font-family:'Fira Code',monospace;font-size:8px;letter-spacing:2.5px;
-  text-transform:uppercase;color:var(--muted);margin-bottom:7px;
+.card-category{
+  font-family:'Fira Code',monospace;
+  font-size:clamp(7px,.75vw,9px);
+  letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);
+  margin-bottom:clamp(5px,.6vw,8px);
 }
-.card-name {
-  font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;
-  color:var(--text);line-height:1.2;margin-bottom:14px;padding-right:84px;
-  letter-spacing:0.5px;
+.card-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(14px,1.6vw,20px);font-weight:700;
+  color:var(--text);line-height:1.2;
+  margin-bottom:clamp(10px,1.2vw,16px);
+  padding-right:clamp(68px,9vw,96px);
+  letter-spacing:.5px;
 }
 .card-code{display:flex;flex-wrap:wrap;gap:3px;}
 
-/* ─── LIST VIEW ── */
+/* ══════════════════════════════════════════════
+   LIST VIEW
+══════════════════════════════════════════════ */
 .list-view .card{
-  padding:11px 16px;
-  display:grid;grid-template-columns:90px 1fr auto;
-  align-items:center;gap:16px;
+  padding:clamp(8px,1vw,14px) clamp(12px,1.5vw,20px);
+  display:grid;
+  grid-template-columns:clamp(70px,9vw,110px) 1fr auto;
+  align-items:center;
+  gap:clamp(10px,1.5vw,20px);
 }
 .list-view .card::after{height:3px;width:100%;top:0;left:0;border-radius:0;}
 .list-view .card-actions{position:static;}
 .list-view .card-category{margin-bottom:0;}
-.list-view .card-name{margin-bottom:0;padding-right:0;font-size:15px;}
+.list-view .card-name{margin-bottom:0;padding-right:0;font-size:clamp(13px,1.4vw,17px);}
 .list-view .card-code-wrap{display:flex;align-items:center;gap:12px;}
 .list-view .card-code{gap:3px;}
 .list-view .card-left{display:flex;flex-direction:column;gap:2px;}
 
-/* ─── BUTTON PILLS ── */
-.btn-pill {
+/* ══════════════════════════════════════════════
+   BUTTON PILLS
+══════════════════════════════════════════════ */
+.btn-pill{
   display:inline-flex;align-items:center;
-  padding:2px 7px;border-radius:3px;
-  font-family:'Fira Code',monospace;font-size:9px;font-weight:500;
-  letter-spacing:0.3px;white-space:nowrap;
+  padding:clamp(1px,.3vw,3px) clamp(5px,.7vw,9px);
+  border-radius:3px;
+  font-family:'Fira Code',monospace;
+  font-size:clamp(7px,.75vw,10px);font-weight:500;
+  letter-spacing:.3px;white-space:nowrap;
   transition:all var(--tr);
 }
-/* PS */
-.btn-cross    {background:rgba(40,130,255,0.13);color:#6699ff;border:1px solid rgba(40,130,255,0.25);}
-.btn-circle   {background:rgba(255,55,55,0.13); color:#ff7070;border:1px solid rgba(255,55,55,0.25);}
-.btn-square   {background:rgba(255,90,190,0.13);color:#ff80cc;border:1px solid rgba(255,90,190,0.25);}
-.btn-triangle {background:rgba(40,210,100,0.13);color:#50d888;border:1px solid rgba(40,210,100,0.25);}
-.btn-r1,.btn-r2{background:rgba(240,180,0,0.11);color:#f0b800;border:1px solid rgba(240,180,0,0.22);}
-.btn-l1,.btn-l2{background:rgba(180,120,255,0.11);color:#c080ff;border:1px solid rgba(180,120,255,0.22);}
-.btn-dir      {background:rgba(255,255,255,0.06);color:#a0a0c0;border:1px solid rgba(255,255,255,0.1);}
-/* Xbox */
-.xbox .btn-a {background:rgba(0,220,80,0.13); color:#30ee70;border:1px solid rgba(0,220,80,0.25);}
-.xbox .btn-b {background:rgba(220,30,30,0.13); color:#ee5050;border:1px solid rgba(220,30,30,0.25);}
-.xbox .btn-x {background:rgba(40,130,255,0.13);color:#6699ff;border:1px solid rgba(40,130,255,0.25);}
-.xbox .btn-y {background:rgba(220,190,0,0.13); color:#eedd00;border:1px solid rgba(220,190,0,0.25);}
-.xbox .btn-rb,.xbox .btn-rt{background:rgba(240,180,0,0.11);color:#f0b800;border:1px solid rgba(240,180,0,0.22);}
-.xbox .btn-lb,.xbox .btn-lt{background:rgba(180,120,255,0.11);color:#c080ff;border:1px solid rgba(180,120,255,0.22);}
-.xbox .btn-dir{background:rgba(255,255,255,0.06);color:#a0a0c0;border:1px solid rgba(255,255,255,0.1);}
+.btn-cross    {background:rgba(40,130,255,.13);color:#6699ff;border:1px solid rgba(40,130,255,.25);}
+.btn-circle   {background:rgba(255,55,55,.13); color:#ff7070;border:1px solid rgba(255,55,55,.25);}
+.btn-square   {background:rgba(255,90,190,.13);color:#ff80cc;border:1px solid rgba(255,90,190,.25);}
+.btn-triangle {background:rgba(40,210,100,.13);color:#50d888;border:1px solid rgba(40,210,100,.25);}
+.btn-r1,.btn-r2{background:rgba(240,180,0,.11);color:#f0b800;border:1px solid rgba(240,180,0,.22);}
+.btn-l1,.btn-l2{background:rgba(180,120,255,.11);color:#c080ff;border:1px solid rgba(180,120,255,.22);}
+.btn-dir      {background:rgba(255,255,255,.06);color:#a0a0c0;border:1px solid rgba(255,255,255,.1);}
+.xbox .btn-a  {background:rgba(0,220,80,.13); color:#30ee70;border:1px solid rgba(0,220,80,.25);}
+.xbox .btn-b  {background:rgba(220,30,30,.13); color:#ee5050;border:1px solid rgba(220,30,30,.25);}
+.xbox .btn-x  {background:rgba(40,130,255,.13);color:#6699ff;border:1px solid rgba(40,130,255,.25);}
+.xbox .btn-y  {background:rgba(220,190,0,.13); color:#eedd00;border:1px solid rgba(220,190,0,.25);}
+.xbox .btn-rb,.xbox .btn-rt{background:rgba(240,180,0,.11);color:#f0b800;border:1px solid rgba(240,180,0,.22);}
+.xbox .btn-lb,.xbox .btn-lt{background:rgba(180,120,255,.11);color:#c080ff;border:1px solid rgba(180,120,255,.22);}
+.xbox .btn-dir{background:rgba(255,255,255,.06);color:#a0a0c0;border:1px solid rgba(255,255,255,.1);}
 
-mark{background:rgba(251,191,36,0.24);color:var(--accent2);border-radius:2px;padding:0 2px;}
+mark{background:rgba(251,191,36,.24);color:var(--accent2);border-radius:2px;padding:0 2px;}
 
-/* ─── NO RESULTS ── */
+/* ══════════════════════════════════════════════
+   NO RESULTS
+══════════════════════════════════════════════ */
 .no-results{
-  display:none;text-align:center;padding:80px 20px;
+  display:none;text-align:center;padding:clamp(48px,8vw,100px) 20px;
   font-family:'Fira Code',monospace;color:var(--muted);font-size:12px;
   grid-column:1/-1;
 }
 .no-results strong{
-  display:block;
-  font-family:'Black Han Sans',sans-serif;
-  font-size:52px;color:var(--border-hi);
+  display:block;font-family:'Black Han Sans',sans-serif;
+  font-size:clamp(32px,7vw,60px);color:var(--border-hi);
   letter-spacing:6px;margin-bottom:10px;
 }
 
-/* ─── TOAST ── */
+/* ══════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════ */
 #toast-container{
-  position:fixed;bottom:24px;right:24px;
+  position:fixed;bottom:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);
   display:flex;flex-direction:column;gap:7px;
   z-index:9999;pointer-events:none;
 }
 .toast{
-  background:var(--surface);
-  border:1px solid var(--border-hi);
-  color:var(--text);
-  font-family:'Fira Code',monospace;font-size:11px;letter-spacing:0.3px;
-  padding:10px 15px;border-radius:3px;
-  box-shadow:0 8px 28px rgba(0,0,0,0.55);
+  background:var(--surface);border:1px solid var(--border-hi);color:var(--text);
+  font-family:'Fira Code',monospace;font-size:clamp(10px,1.1vw,12px);letter-spacing:.3px;
+  padding:clamp(8px,1vw,12px) clamp(12px,1.5vw,18px);
+  border-radius:3px;box-shadow:0 8px 28px rgba(0,0,0,.55);
   display:flex;align-items:center;gap:8px;
-  animation:toastIn 0.22s ease both;pointer-events:none;max-width:290px;
+  animation:toastIn .22s ease both;pointer-events:none;
+  max-width:clamp(220px,30vw,320px);
 }
-.toast.remove{animation:toastOut 0.28s ease both;}
+.toast.remove{animation:toastOut .28s ease both;}
 .toast-icon{font-size:13px;}
-.toast.type-success{border-color:rgba(52,211,153,0.38);}
+.toast.type-success{border-color:rgba(52,211,153,.38);}
 .toast.type-success .toast-icon{color:var(--accent3);}
-.toast.type-info   {border-color:rgba(66,153,255,0.38);}
+.toast.type-info   {border-color:rgba(66,153,255,.38);}
 .toast.type-info   .toast-icon{color:#6699ff;}
-.toast.type-accent {border-color:rgba(240,82,42,0.38);}
+.toast.type-accent {border-color:rgba(240,82,42,.38);}
 .toast.type-accent .toast-icon{color:var(--accent);}
 
-/* ─── SCROLL TOP ── */
+/* ══════════════════════════════════════════════
+   SCROLL TOP
+══════════════════════════════════════════════ */
 #scrollTop{
-  position:fixed;bottom:24px;left:24px;
+  position:fixed;bottom:clamp(14px,3vw,28px);left:clamp(14px,3vw,28px);
   background:var(--surface);border:1px solid var(--border-hi);color:var(--muted2);
-  width:38px;height:38px;border-radius:3px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-size:16px;
+  width:clamp(32px,4vw,42px);height:clamp(32px,4vw,42px);
+  border-radius:3px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(14px,1.5vw,18px);
   z-index:999;opacity:0;transform:translateY(10px);pointer-events:none;
-  transition:all 0.22s ease;box-shadow:0 4px 16px rgba(0,0,0,0.4);
+  transition:all .22s ease;box-shadow:0 4px 16px rgba(0,0,0,.4);
 }
 #scrollTop.visible{opacity:1;transform:translateY(0);pointer-events:all;}
 #scrollTop:hover{border-color:var(--accent);color:var(--accent);}
 
-/* ─── FOOTER ── */
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
 footer{
-  text-align:center;padding:24px;
-  font-family:'Fira Code',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;
-  position:relative;z-index:1;
-  border-top:1px solid var(--border);
+  text-align:center;padding:clamp(16px,2.5vw,28px);
+  font-family:'Fira Code',monospace;font-size:clamp(8px,.85vw,10px);
+  color:var(--muted);letter-spacing:2px;
+  position:relative;z-index:1;border-top:1px solid var(--border);
 }
 footer a{color:var(--accent);text-decoration:none;}
 footer a:hover{text-decoration:underline;}
 
-/* ─── KBD HINT ── */
 .kbd-hint{
   font-family:'Fira Code',monospace;font-size:9px;color:var(--muted);
-  letter-spacing:0.5px;margin-left:auto;display:flex;align-items:center;gap:4px;
+  letter-spacing:.5px;margin-left:auto;display:flex;align-items:center;gap:4px;
 }
 kbd{
   background:var(--surface);border:1px solid var(--border-hi);
@@ -525,9 +517,11 @@ kbd{
   font-family:'Fira Code',monospace;font-size:8px;color:var(--muted2);
 }
 
-/* ─── ANIMATIONS ── */
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(8px);}
+/* ══════════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════════ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(10px);}
   to  {opacity:1;transform:translateY(0);}
 }
 @keyframes toastIn{
@@ -538,15 +532,60 @@ kbd{
   from{opacity:1;transform:translateX(0);}
   to  {opacity:0;transform:translateX(16px);}
 }
+/* staggered batch entrance — applied via JS */
+@keyframes cardPop{
+  0%  {opacity:0;transform:translateY(12px) scale(.97);}
+  60% {transform:translateY(-2px) scale(1.005);}
+  100%{opacity:1;transform:translateY(0) scale(1);}
+}
 
-/* ─── RESPONSIVE ── */
-@media(max-width:600px){
-  .grid,.fav-grid{grid-template-columns:1fr;}
+/* ══════════════════════════════════════════════
+   RESPONSIVE OVERRIDES (mobile-specific only)
+   Everything else is handled by fluid clamp()
+══════════════════════════════════════════════ */
+
+/* Very small phones */
+@media(max-width:380px){
+  :root{ --card-min:100%; }
   .header-actions{display:none;}
+  .kbd-hint{display:none;}
+}
+
+/* Phones */
+@media(max-width:600px){
+  :root{ --card-min:calc(50% - 4px); }
   .kbd-hint{display:none;}
   .list-view .card{grid-template-columns:1fr;}
   .list-view .card-code-wrap{flex-direction:column;align-items:flex-start;}
   #toast-container{bottom:14px;right:14px;}
+  .list-view .card-actions{position:static;margin-top:6px;}
+}
+
+/* mid-range tablets: allow 2 cols minimum */
+@media(min-width:601px) and (max-width:900px){
+  :root{ --card-min:clamp(200px, 45%, 300px); }
+}
+
+/* Large screens — extra density */
+@media(min-width:1600px){
+  :root{ --card-min:clamp(220px, 17vw, 300px); }
+}
+@media(min-width:2200px){
+  :root{ --card-min:clamp(220px, 14vw, 280px); }
+}
+@media(min-width:3000px){
+  :root{ --card-min:clamp(200px, 11vw, 260px); }
+}
+
+/* touch devices: remove hover lift (prevents sticky states) */
+@media(hover:none){
+  .card:hover{transform:none;box-shadow:none;}
+  .card:active{background:var(--card-hover);border-color:rgba(240,82,42,.25);}
+}
+
+/* reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .card,*{animation-duration:.01ms!important;transition-duration:.01ms!important;}
 }
 </style>
 </head>
@@ -571,84 +610,89 @@ kbd{
   <div class="header-divider"></div>
 </header>
 
-<!-- PLATFORM SWITCHER -->
-<div class="platform-bar">
-  <button class="platform-btn active ps" data-platform="ps">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8.984 2.596v17.548l3.915 1.261V6.688c0-.69.304-1.151.794-.991.636.181.762.814.762 1.505v5.876c1.689.831 4.21-.175 4.21-3.126 0-3.188-1.128-4.812-4.491-5.893a32.9 32.9 0 0 0-5.19-.463zm6.12 14.367c-1.128.35-2.317.42-3.547.182v2.005l6.354 2.054s3.667-.617 3.667-4.443c0-3.798-3.21-4.606-5.149-5.27v3.943c0 .766.298 1.282.675 1.529zM3 19.641l5.09 1.73v-2.003L3 17.71v1.931z"/></svg>
-    PlayStation
-  </button>
-  <button class="platform-btn xbox" data-platform="xbox">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M4.102 7.323a9.96 9.96 0 0 0-2.08 6.099c.015 2.712 1.086 5.216 2.913 7.057.105-.115.219-.244.345-.394.765-.906 2.011-2.572 3.28-4.752 1.104-1.902 1.9-3.742 2.368-5.272a7.655 7.655 0 0 0-.545-.567c-.843-.793-2.082-1.522-3.544-2.034a11.83 11.83 0 0 0-2.737-.137zm15.8 0a11.831 11.831 0 0 0-2.737.137c-1.462.512-2.701 1.241-3.544 2.034a7.655 7.655 0 0 0-.545.567c.468 1.53 1.264 3.37 2.368 5.272 1.27 2.18 2.515 3.846 3.28 4.752.126.15.24.279.345.394 1.827-1.841 2.898-4.345 2.913-7.057a9.96 9.96 0 0 0-2.08-6.099zM12 3.03c-1.26-.02-2.862.332-4.297 1.044 1.58.576 2.99 1.424 3.977 2.352.111.103.215.21.32.318.105-.108.209-.215.32-.318.987-.928 2.396-1.776 3.977-2.352C14.862 3.362 13.26 3.01 12 3.03zM4.12 20.66c.013.014.025.028.038.041A9.996 9.996 0 0 0 12 24a9.996 9.996 0 0 0 7.842-3.299c.013-.013.025-.027.038-.04-.075-.085-.153-.178-.248-.289-.788-.934-2.068-2.641-3.368-4.874-1.068-1.84-1.846-3.643-2.303-5.15-.109.1-.22.2-.322.305L12 11.164l-.639-.611c-.101-.104-.213-.206-.322-.305-.457 1.507-1.235 3.31-2.303 5.15-1.3 2.233-2.58 3.94-3.368 4.874-.095.111-.173.204-.248.289z"/></svg>
-    Xbox
-  </button>
-</div>
+<!-- SHELL wraps everything below header -->
+<div class="shell">
 
-<!-- CONTROLS -->
-<div class="controls">
-  <div class="search-wrap">
-    <svg class="s-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-    <input id="search" type="text" placeholder="Search cheat or button  (e.g. R1, Circle, health)…" autocomplete="off" spellcheck="false">
-    <button class="search-clear" id="searchClear" title="Clear">✕</button>
-  </div>
-  <div class="ctrl-actions">
-    <button class="action-btn accent" id="randomBtn" title="Random cheat">
-      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
-      Random
+  <!-- PLATFORM SWITCHER -->
+  <div class="platform-bar">
+    <button class="platform-btn active ps" data-platform="ps">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8.984 2.596v17.548l3.915 1.261V6.688c0-.69.304-1.151.794-.991.636.181.762.814.762 1.505v5.876c1.689.831 4.21-.175 4.21-3.126 0-3.188-1.128-4.812-4.491-5.893a32.9 32.9 0 0 0-5.19-.463zm6.12 14.367c-1.128.35-2.317.42-3.547.182v2.005l6.354 2.054s3.667-.617 3.667-4.443c0-3.798-3.21-4.606-5.149-5.27v3.943c0 .766.298 1.282.675 1.529zM3 19.641l5.09 1.73v-2.003L3 17.71v1.931z"/></svg>
+      PlayStation
     </button>
-    <button class="action-btn" id="exportBtn" title="Export favorites">
-      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-      Export
+    <button class="platform-btn xbox" data-platform="xbox">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M4.102 7.323a9.96 9.96 0 0 0-2.08 6.099c.015 2.712 1.086 5.216 2.913 7.057.105-.115.219-.244.345-.394.765-.906 2.011-2.572 3.28-4.752 1.104-1.902 1.9-3.742 2.368-5.272a7.655 7.655 0 0 0-.545-.567c-.843-.793-2.082-1.522-3.544-2.034a11.83 11.83 0 0 0-2.737-.137zm15.8 0a11.831 11.831 0 0 0-2.737.137c-1.462.512-2.701 1.241-3.544 2.034a7.655 7.655 0 0 0-.545.567c.468 1.53 1.264 3.37 2.368 5.272 1.27 2.18 2.515 3.846 3.28 4.752.126.15.24.279.345.394 1.827-1.841 2.898-4.345 2.913-7.057a9.96 9.96 0 0 0-2.08-6.099zM12 3.03c-1.26-.02-2.862.332-4.297 1.044 1.58.576 2.99 1.424 3.977 2.352.111.103.215.21.32.318.105-.108.209-.215.32-.318.987-.928 2.396-1.776 3.977-2.352C14.862 3.362 13.26 3.01 12 3.03zM4.12 20.66c.013.014.025.028.038.041A9.996 9.996 0 0 0 12 24a9.996 9.996 0 0 0 7.842-3.299c.013-.013.025-.027.038-.04-.075-.085-.153-.178-.248-.289-.788-.934-2.068-2.641-3.368-4.874-1.068-1.84-1.846-3.643-2.303-5.15-.109.1-.22.2-.322.305L12 11.164l-.639-.611c-.101-.104-.213-.206-.322-.305-.457 1.507-1.235 3.31-2.303 5.15-1.3 2.233-2.58 3.94-3.368 4.874-.095.111-.173.204-.248.289z"/></svg>
+      Xbox
     </button>
-    <span class="kbd-hint"><kbd>/</kbd> search &nbsp;·&nbsp; <kbd>Esc</kbd> clear</span>
   </div>
-</div>
 
-<!-- FILTER BAR -->
-<div class="filter-bar">
-  <button class="filter-btn active" data-cat="all">All</button>
-  <button class="filter-btn" data-cat="Player">Player</button>
-  <button class="filter-btn" data-cat="Weapons">Weapons</button>
-  <button class="filter-btn" data-cat="Vehicles">Vehicles</button>
-  <button class="filter-btn" data-cat="Spawn">Spawn</button>
-  <button class="filter-btn" data-cat="World">World</button>
-  <button class="filter-btn" data-cat="Peds">Peds</button>
-  <button class="filter-btn" data-cat="Time">Time/Weather</button>
-</div>
-
-<!-- STATUS BAR -->
-<div class="status-bar">
-  <div class="count-info">Showing <strong id="countNum">0</strong> cheats</div>
-  <div class="view-sort">
-    <button class="vs-btn active" id="gridViewBtn" title="Grid view">⊞</button>
-    <button class="vs-btn" id="listViewBtn" title="List view">☰</button>
-    <button class="vs-btn" id="sortBtn" title="Sort A→Z">A↓</button>
-  </div>
-</div>
-
-<!-- FAVORITES -->
-<div class="fav-section" id="favSection">
-  <div class="fav-header">
-    <span class="fav-title">★ Favorites</span>
-    <span class="fav-meta" id="favCount">0 saved</span>
-    <div class="fav-actions">
-      <button class="action-btn" id="clearFavsBtn">Clear All</button>
+  <!-- CONTROLS -->
+  <div class="controls">
+    <div class="search-wrap">
+      <svg class="s-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input id="search" type="text" placeholder="Search cheat or button (e.g. R1, Circle, health)…" autocomplete="off" spellcheck="false" inputmode="search">
+      <button class="search-clear" id="searchClear" title="Clear">✕</button>
+    </div>
+    <div class="ctrl-actions">
+      <button class="action-btn accent" id="randomBtn" title="Random cheat">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+        Random
+      </button>
+      <button class="action-btn" id="exportBtn" title="Export favorites">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Export
+      </button>
+      <span class="kbd-hint"><kbd>/</kbd> search &nbsp;·&nbsp; <kbd>Esc</kbd> clear</span>
     </div>
   </div>
-  <div class="fav-grid" id="favGrid"></div>
-  <div class="fav-divider"></div>
-</div>
 
-<!-- GRID -->
-<div class="grid-wrap">
-  <div class="grid" id="grid">
-    <div class="no-results" id="noResults"><strong>NOT FOUND</strong>Try a different name or button combo</div>
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-cat="all">All</button>
+    <button class="filter-btn" data-cat="Player">Player</button>
+    <button class="filter-btn" data-cat="Weapons">Weapons</button>
+    <button class="filter-btn" data-cat="Vehicles">Vehicles</button>
+    <button class="filter-btn" data-cat="Spawn">Spawn</button>
+    <button class="filter-btn" data-cat="World">World</button>
+    <button class="filter-btn" data-cat="Peds">Peds</button>
+    <button class="filter-btn" data-cat="Time">Time/Weather</button>
   </div>
-</div>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar">
+    <div class="count-info">Showing <strong id="countNum">0</strong> cheats</div>
+    <div class="view-sort">
+      <button class="vs-btn active" id="gridViewBtn" title="Grid view">⊞</button>
+      <button class="vs-btn" id="listViewBtn" title="List view">☰</button>
+      <button class="vs-btn" id="sortBtn" title="Sort A→Z">A↓</button>
+    </div>
+  </div>
+
+  <!-- FAVORITES -->
+  <div class="fav-section" id="favSection">
+    <div class="fav-header">
+      <span class="fav-title">★ Favorites</span>
+      <span class="fav-meta" id="favCount">0 saved</span>
+      <div class="fav-actions">
+        <button class="action-btn" id="clearFavsBtn">Clear All</button>
+      </div>
+    </div>
+    <div class="fav-grid" id="favGrid"></div>
+    <div class="fav-divider"></div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="grid-wrap">
+    <div class="grid" id="grid">
+      <div class="no-results" id="noResults"><strong>NOT FOUND</strong>Try a different name or button combo</div>
+    </div>
+  </div>
+
+</div><!-- /shell -->
 
 <!-- FOOTER -->
 <footer>
   SA CHEATS &nbsp;·&nbsp; GTA San Andreas &nbsp;·&nbsp;
-  <a href="https://github.com/zengm5057-sudo/sa-cheats" target="_blank">github.com/zengm5057-sudo/sa-cheats</a>
+  <a href="https://github.com/Ahmed-Rade/sa-cheats" target="_blank">github.com/Ahmed-Rade/sa-cheats</a>
 </footer>
 
 <div id="toast-container"></div>
@@ -657,386 +701,318 @@ kbd{
 <script>
 /* ════ DATA ════ */
 const CHEATS = [
-  { name: "Weapon Set 1", cat: "Weapons", ps: "R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Right, Up" },
-  { name: "Weapon Set 2", cat: "Weapons", ps: "R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Down, Left" },
-  { name: "Weapon Set 3", cat: "Weapons", ps: "R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Down, Down" },
-  { name: "Money, Health & Armor", cat: "Player", ps: "R1, R2, L1, X, Left, Down, Right, Up, Left, Down, Right, Up" },
-  { name: "Suicide", cat: "Player", ps: "Right, L2, Down, R1, Left, Left, R1, L1, L2, L1" },
-  { name: "Infinite Ammo", cat: "Weapons", ps: "L1, R1, Square, R1, Left, R2, R1, Left, Square, Down, L1, L1" },
-  { name: "Infinite Lung Capacity", cat: "Player", ps: "Down, Left, L1, Down, Down, R2, Down, L2, Down" },
-  { name: "6 Star Wanted Level", cat: "Player", ps: "Circle, Right, Circle, Right, Left, Square, X, Down" },
-  { name: "Raise Wanted Level", cat: "Player", ps: "R1, R1, Circle, R2, Right, Left, Right, Left, Right, Left" },
-  { name: "Lower Wanted Level", cat: "Player", ps: "R1, R1, Circle, R2, Up, Down, Up, Down, Up, Down" },
-  { name: "Lock Wanted Level", cat: "Player", ps: "Circle, Right, Circle, Right, Left, Square, Triangle, Up" },
-  { name: "Maximum Fat", cat: "Player", ps: "Triangle, Up, Up, Left, Right, Square, Circle, Down" },
-  { name: "Minimum Fat (Skinny)", cat: "Player", ps: "Triangle, Up, Up, Left, Right, Square, Circle, Right" },
-  { name: "Maximum Muscle", cat: "Player", ps: "Triangle, Up, Up, Left, Right, Square, Circle, Left" },
-  { name: "Maximum Respect", cat: "Player", ps: "L1, R1, Triangle, Down, R2, X, L1, Up, L2, L2, L1, L1" },
-  { name: "Maximum Sex Appeal", cat: "Player", ps: "Circle, Triangle, Triangle, Up, Circle, R1, L2, Up, Triangle, L1, L1, L1" },
-  { name: "Maximum Vehicle Skills", cat: "Player", ps: "Square, L2, X, R1, L2, L2, Left, R1, Right, L1, L1, L1" },
-  { name: "Hitman in all Weapons", cat: "Weapons", ps: "Down, Square, X, Left, R1, R2, Left, Down, Down, L1, L1, L1" },
-  { name: "Super Bunny Hop", cat: "Player", ps: "Triangle, Square, Circle, Circle, Square, Circle, Circle, L1, L2, L2, R1, R2" },
-  { name: "Super Jump", cat: "Player", ps: "Up, Up, Triangle, Triangle, Up, Up, Left, Right, Square, R2, R2" },
-  { name: "Super Punch", cat: "Player", ps: "Up, Left, X, Triangle, R1, Circle, Circle, Circle, L2" },
-  { name: "Pedestrians Have Guns", cat: "Peds", ps: "R2, R1, X, Triangle, X, Triangle, Up, Down" },
-  { name: "Pedestrians Attack You", cat: "Peds", ps: "Down, Up, Up, Up, X, R2, R1, L2, L2" },
-  { name: "Pedestrians Attack You with Guns", cat: "Peds", ps: "X, L1, Up, Square, Down, X, L2, Triangle, Down, R1, L1, L1" },
-  { name: "Pedestrians Riot", cat: "Peds", ps: "Down, Left, Up, Left, X, R2, R1, L2, L1" },
-  { name: "Pedestrians are Elvis", cat: "Peds", ps: "L1, Circle, Triangle, L1, L1, Square, L2, Up, Down, Left" },
-  { name: "Pedestrians are Gang Members", cat: "Peds", ps: "L2, Up, R1, R1, Left, R1, R1, R2, Right, Down" },
-  { name: "No Pedestrians", cat: "Peds", ps: "X, Down, Up, R2, Down, Triangle, L1, Triangle, Left" },
-  { name: "Recruit Pedestrians with 9mm", cat: "Peds", ps: "Down, Square, Up, R2, R2, Up, Right, Right, Up" },
-  { name: "Prostitutes Pay You", cat: "Peds", ps: "Right, L2, L2, Down, L2, Up, Up, L2, R2" },
-  { name: "Beach Party", cat: "World", ps: "Up, Up, Down, Down, Square, Circle, L1, R1, Triangle, Down" },
-  { name: "Carnival", cat: "World", ps: "Triangle, Triangle, L1, Square, Square, Circle, Square, Down, Circle" },
-  { name: "City in Chaos", cat: "World", ps: "L2, Right, L1, Triangle, Right, Right, R1, L1, Right, L1, L1, L1" },
-  { name: "Faster Gameplay", cat: "World", ps: "Triangle, Up, Right, Down, L2, L1, Square" },
-  { name: "Slower Gameplay", cat: "World", ps: "Triangle, Up, Right, Down, Square, R2, R1" },
-  { name: "Speed Up Time", cat: "Time", ps: "Circle, Circle, L1, Square, L1, Square, Square, Square, L1, Triangle, Circle, Triangle" },
-  { name: "Always 21:00", cat: "Time", ps: "Left, Left, L2, R1, Right, Square, Square, L1, L2, X" },
-  { name: "Always 00:00", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, Triangle" },
-  { name: "Blow Up All Cars", cat: "Vehicles", ps: "R2, L2, R1, L1, L2, R2, Square, Triangle, Circle, Triangle, L2, L1" },
-  { name: "Perfect Handling", cat: "Vehicles", ps: "Triangle, R1, R1, Left, R1, L1, R2, L1" },
-  { name: "Faster Cars", cat: "Vehicles", ps: "Up, L1, R1, Up, Right, Up, X, L2, X, L1" },
-  { name: "Tank Cars (Explode on Contact)", cat: "Vehicles", ps: "L1, L2, L2, Up, Down, Down, Up, R1, R2, R2" },
-  { name: "All Traffic Lights Green", cat: "Vehicles", ps: "Right, R1, Up, L2, L2, Left, R1, L1, R1, R1" },
-  { name: "Aggressive Traffic", cat: "Vehicles", ps: "R2, Circle, R1, L2, Left, R1, L1, R2, L2" },
-  { name: "Pink Traffic", cat: "Vehicles", ps: "Circle, L1, Down, L2, Left, X, R1, L1, Right, Circle" },
-  { name: "Black Traffic", cat: "Vehicles", ps: "Circle, L2, Up, R1, Left, X, R1, L1, Left, Circle" },
-  { name: "Sports Car Traffic", cat: "Vehicles", ps: "Up, L1, R1, Up, Right, Up, X, L2, X, L1" },
-  { name: "Junk Car Traffic", cat: "Vehicles", ps: "L2, Right, L1, Up, X, L1, L2, R2, R1, L1, L1, L1" },
-  { name: "Flying Cars", cat: "Vehicles", ps: "Up, Down, L1, R1, L1, Right, Left, L1, Left" },
-  { name: "Flying Boats", cat: "Vehicles", ps: "R2, Circle, Up, L1, Right, R1, Right, Up, Square, Triangle" },
-  { name: "All Cars Have Nitros", cat: "Vehicles", ps: "Left, Triangle, R1, L1, Up, Square, Triangle, Down, Circle, L2, L1, L1" },
-  { name: "Taxis Bunnyhop", cat: "Vehicles", ps: "Up, X, Triangle, X, Triangle, X, Square, R2, Right" },
-  { name: "Drive on Water", cat: "Vehicles", ps: "Right, R2, Circle, R1, L2, Square, R1, R2" },
-  { name: "Spawn Jetpack", cat: "Spawn", ps: "L1, L2, R1, R2, Up, Down, Left, Right, L1, L2, R1, R2, Up, Down, Left, Right" },
-  { name: "Spawn Tank", cat: "Spawn", ps: "Circle, Circle, L1, Circle, Circle, Circle, L1, L2, R1, Triangle, Circle, Triangle" },
-  { name: "Spawn Monster Truck", cat: "Spawn", ps: "Right, Up, R1, R1, R1, Down, Triangle, Triangle, X, Circle, L1, L1" },
-  { name: "Spawn Parachute", cat: "Spawn", ps: "Left, Right, L1, L2, R1, R2, R2, Up, Down, Right, L1" },
-  { name: "Spawn Caddy", cat: "Spawn", ps: "Circle, L1, Up, R1, L2, X, R1, L1, Circle, X" },
-  { name: "Spawn Dozer", cat: "Spawn", ps: "R2, L1, L1, Right, Right, Up, Up, X, L1, Left" },
-  { name: "Spawn Bloodring Banger", cat: "Spawn", ps: "Down, R1, Circle, L2, L2, X, R1, L1, Left, Left" },
-  { name: "Spawn Hotring Racer 1", cat: "Spawn", ps: "R1, Circle, R2, Right, L1, L2, X, X, Square, R1" },
-  { name: "Spawn Hotring Racer 2", cat: "Spawn", ps: "R2, L1, Circle, Right, L1, R1, Right, Up, Circle, R2" },
-  { name: "Spawn Hunter", cat: "Spawn", ps: "Circle, X, L1, Circle, Circle, L1, Circle, R1, R2, L2, L1, L1" },
-  { name: "Spawn Hydra", cat: "Spawn", ps: "Triangle, Triangle, Square, Circle, X, L1, L1, Down, Up" },
-  { name: "Spawn Limo", cat: "Spawn", ps: "R2, Up, L2, Left, Left, R1, L1, Circle, Right" },
-  { name: "Spawn Quad", cat: "Spawn", ps: "Left, Left, Down, Down, Up, Up, Square, Circle, Triangle, R1, R2" },
-  { name: "Spawn Rancher", cat: "Spawn", ps: "Up, Right, Right, L1, Right, Up, Square, L2" },
-  { name: "Spawn Stunt Plane", cat: "Spawn", ps: "Circle, Up, L1, L2, Down, R1, L1, L1, Left, Left, X, Triangle" },
-  { name: "Spawn Tanker", cat: "Spawn", ps: "R1, Up, Left, Right, R2, Up, Right, Square, Right, L2, L1, L1" },
-  { name: "Spawn Trashmaster", cat: "Spawn", ps: "Circle, R1, Circle, R1, Left, Left, R1, L1, Circle, Right" },
-  { name: "Spawn Vortex", cat: "Spawn", ps: "Triangle, Triangle, Square, Circle, X, L1, L2, Down, Down" },
-  { name: "Rain", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, Circle" },
-  { name: "Sunny", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, Square" },
-  { name: "Very Sunny", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, Down" },
-  { name: "Sandstorm", cat: "Time", ps: "Up, Down, L1, L1, L2, L2, L1, L2, R1, R2" },
-  { name: "Fog", cat: "Time", ps: "R2, X, L1, L1, L2, L2, L2, X" },
-  { name: "Cloudy", cat: "Time", ps: "L2, Down, Down, Left, Square, Left, R2, Square, X, R1, L1, L1" },
-  { name: "Bobble Head Mode", cat: "World", ps: "Up, Up, Down, Down, Left, Right, Left, Right, Circle, X" },
+  { name:"Weapon Set 1",cat:"Weapons",ps:"R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Right, Up" },
+  { name:"Weapon Set 2",cat:"Weapons",ps:"R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Down, Left" },
+  { name:"Weapon Set 3",cat:"Weapons",ps:"R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Down, Down" },
+  { name:"Money, Health & Armor",cat:"Player",ps:"R1, R2, L1, X, Left, Down, Right, Up, Left, Down, Right, Up" },
+  { name:"Suicide",cat:"Player",ps:"Right, L2, Down, R1, Left, Left, R1, L1, L2, L1" },
+  { name:"Infinite Ammo",cat:"Weapons",ps:"L1, R1, Square, R1, Left, R2, R1, Left, Square, Down, L1, L1" },
+  { name:"Infinite Lung Capacity",cat:"Player",ps:"Down, Left, L1, Down, Down, R2, Down, L2, Down" },
+  { name:"6 Star Wanted Level",cat:"Player",ps:"Circle, Right, Circle, Right, Left, Square, X, Down" },
+  { name:"Raise Wanted Level",cat:"Player",ps:"R1, R1, Circle, R2, Right, Left, Right, Left, Right, Left" },
+  { name:"Lower Wanted Level",cat:"Player",ps:"R1, R1, Circle, R2, Up, Down, Up, Down, Up, Down" },
+  { name:"Lock Wanted Level",cat:"Player",ps:"Circle, Right, Circle, Right, Left, Square, Triangle, Up" },
+  { name:"Maximum Fat",cat:"Player",ps:"Triangle, Up, Up, Left, Right, Square, Circle, Down" },
+  { name:"Minimum Fat (Skinny)",cat:"Player",ps:"Triangle, Up, Up, Left, Right, Square, Circle, Right" },
+  { name:"Maximum Muscle",cat:"Player",ps:"Triangle, Up, Up, Left, Right, Square, Circle, Left" },
+  { name:"Maximum Respect",cat:"Player",ps:"L1, R1, Triangle, Down, R2, X, L1, Up, L2, L2, L1, L1" },
+  { name:"Maximum Sex Appeal",cat:"Player",ps:"Circle, Triangle, Triangle, Up, Circle, R1, L2, Up, Triangle, L1, L1, L1" },
+  { name:"Maximum Vehicle Skills",cat:"Player",ps:"Square, L2, X, R1, L2, L2, Left, R1, Right, L1, L1, L1" },
+  { name:"Hitman in all Weapons",cat:"Weapons",ps:"Down, Square, X, Left, R1, R2, Left, Down, Down, L1, L1, L1" },
+  { name:"Super Bunny Hop",cat:"Player",ps:"Triangle, Square, Circle, Circle, Square, Circle, Circle, L1, L2, L2, R1, R2" },
+  { name:"Super Jump",cat:"Player",ps:"Up, Up, Triangle, Triangle, Up, Up, Left, Right, Square, R2, R2" },
+  { name:"Super Punch",cat:"Player",ps:"Up, Left, X, Triangle, R1, Circle, Circle, Circle, L2" },
+  { name:"Pedestrians Have Guns",cat:"Peds",ps:"R2, R1, X, Triangle, X, Triangle, Up, Down" },
+  { name:"Pedestrians Attack You",cat:"Peds",ps:"Down, Up, Up, Up, X, R2, R1, L2, L2" },
+  { name:"Pedestrians Attack You with Guns",cat:"Peds",ps:"X, L1, Up, Square, Down, X, L2, Triangle, Down, R1, L1, L1" },
+  { name:"Pedestrians Riot",cat:"Peds",ps:"Down, Left, Up, Left, X, R2, R1, L2, L1" },
+  { name:"Pedestrians are Elvis",cat:"Peds",ps:"L1, Circle, Triangle, L1, L1, Square, L2, Up, Down, Left" },
+  { name:"Pedestrians are Gang Members",cat:"Peds",ps:"L2, Up, R1, R1, Left, R1, R1, R2, Right, Down" },
+  { name:"No Pedestrians",cat:"Peds",ps:"X, Down, Up, R2, Down, Triangle, L1, Triangle, Left" },
+  { name:"Recruit Pedestrians with 9mm",cat:"Peds",ps:"Down, Square, Up, R2, R2, Up, Right, Right, Up" },
+  { name:"Prostitutes Pay You",cat:"Peds",ps:"Right, L2, L2, Down, L2, Up, Up, L2, R2" },
+  { name:"Beach Party",cat:"World",ps:"Up, Up, Down, Down, Square, Circle, L1, R1, Triangle, Down" },
+  { name:"Carnival",cat:"World",ps:"Triangle, Triangle, L1, Square, Square, Circle, Square, Down, Circle" },
+  { name:"City in Chaos",cat:"World",ps:"L2, Right, L1, Triangle, Right, Right, R1, L1, Right, L1, L1, L1" },
+  { name:"Faster Gameplay",cat:"World",ps:"Triangle, Up, Right, Down, L2, L1, Square" },
+  { name:"Slower Gameplay",cat:"World",ps:"Triangle, Up, Right, Down, Square, R2, R1" },
+  { name:"Speed Up Time",cat:"Time",ps:"Circle, Circle, L1, Square, L1, Square, Square, Square, L1, Triangle, Circle, Triangle" },
+  { name:"Always 21:00",cat:"Time",ps:"Left, Left, L2, R1, Right, Square, Square, L1, L2, X" },
+  { name:"Always 00:00",cat:"Time",ps:"R2, X, L1, L1, L2, L2, L2, Triangle" },
+  { name:"Blow Up All Cars",cat:"Vehicles",ps:"R2, L2, R1, L1, L2, R2, Square, Triangle, Circle, Triangle, L2, L1" },
+  { name:"Perfect Handling",cat:"Vehicles",ps:"Triangle, R1, R1, Left, R1, L1, R2, L1" },
+  { name:"Faster Cars",cat:"Vehicles",ps:"Up, L1, R1, Up, Right, Up, X, L2, X, L1" },
+  { name:"Tank Cars (Explode on Contact)",cat:"Vehicles",ps:"L1, L2, L2, Up, Down, Down, Up, R1, R2, R2" },
+  { name:"All Traffic Lights Green",cat:"Vehicles",ps:"Right, R1, Up, L2, L2, Left, R1, L1, R1, R1" },
+  { name:"Aggressive Traffic",cat:"Vehicles",ps:"R2, Circle, R1, L2, Left, R1, L1, R2, L2" },
+  { name:"Pink Traffic",cat:"Vehicles",ps:"Circle, L1, Down, L2, Left, X, R1, L1, Right, Circle" },
+  { name:"Black Traffic",cat:"Vehicles",ps:"Circle, L2, Up, R1, Left, X, R1, L1, Left, Circle" },
+  { name:"Sports Car Traffic",cat:"Vehicles",ps:"Up, L1, R1, Up, Right, Up, X, L2, X, L1" },
+  { name:"Junk Car Traffic",cat:"Vehicles",ps:"L2, Right, L1, Up, X, L1, L2, R2, R1, L1, L1, L1" },
+  { name:"Flying Cars",cat:"Vehicles",ps:"Up, Down, L1, R1, L1, Right, Left, L1, Left" },
+  { name:"Flying Boats",cat:"Vehicles",ps:"R2, Circle, Up, L1, Right, R1, Right, Up, Square, Triangle" },
+  { name:"All Cars Have Nitros",cat:"Vehicles",ps:"Left, Triangle, R1, L1, Up, Square, Triangle, Down, Circle, L2, L1, L1" },
+  { name:"Taxis Bunnyhop",cat:"Vehicles",ps:"Up, X, Triangle, X, Triangle, X, Square, R2, Right" },
+  { name:"Drive on Water",cat:"Vehicles",ps:"Right, R2, Circle, R1, L2, Square, R1, R2" },
+  { name:"Spawn Jetpack",cat:"Spawn",ps:"L1, L2, R1, R2, Up, Down, Left, Right, L1, L2, R1, R2, Up, Down, Left, Right" },
+  { name:"Spawn Tank",cat:"Spawn",ps:"Circle, Circle, L1, Circle, Circle, Circle, L1, L2, R1, Triangle, Circle, Triangle" },
+  { name:"Spawn Monster Truck",cat:"Spawn",ps:"Right, Up, R1, R1, R1, Down, Triangle, Triangle, X, Circle, L1, L1" },
+  { name:"Spawn Parachute",cat:"Spawn",ps:"Left, Right, L1, L2, R1, R2, R2, Up, Down, Right, L1" },
+  { name:"Spawn Caddy",cat:"Spawn",ps:"Circle, L1, Up, R1, L2, X, R1, L1, Circle, X" },
+  { name:"Spawn Dozer",cat:"Spawn",ps:"R2, L1, L1, Right, Right, Up, Up, X, L1, Left" },
+  { name:"Spawn Bloodring Banger",cat:"Spawn",ps:"Down, R1, Circle, L2, L2, X, R1, L1, Left, Left" },
+  { name:"Spawn Hotring Racer 1",cat:"Spawn",ps:"R1, Circle, R2, Right, L1, L2, X, X, Square, R1" },
+  { name:"Spawn Hotring Racer 2",cat:"Spawn",ps:"R2, L1, Circle, Right, L1, R1, Right, Up, Circle, R2" },
+  { name:"Spawn Hunter",cat:"Spawn",ps:"Circle, X, L1, Circle, Circle, L1, Circle, R1, R2, L2, L1, L1" },
+  { name:"Spawn Hydra",cat:"Spawn",ps:"Triangle, Triangle, Square, Circle, X, L1, L1, Down, Up" },
+  { name:"Spawn Limo",cat:"Spawn",ps:"R2, Up, L2, Left, Left, R1, L1, Circle, Right" },
+  { name:"Spawn Quad",cat:"Spawn",ps:"Left, Left, Down, Down, Up, Up, Square, Circle, Triangle, R1, R2" },
+  { name:"Spawn Rancher",cat:"Spawn",ps:"Up, Right, Right, L1, Right, Up, Square, L2" },
+  { name:"Spawn Stunt Plane",cat:"Spawn",ps:"Circle, Up, L1, L2, Down, R1, L1, L1, Left, Left, X, Triangle" },
+  { name:"Spawn Tanker",cat:"Spawn",ps:"R1, Up, Left, Right, R2, Up, Right, Square, Right, L2, L1, L1" },
+  { name:"Spawn Trashmaster",cat:"Spawn",ps:"Circle, R1, Circle, R1, Left, Left, R1, L1, Circle, Right" },
+  { name:"Spawn Vortex",cat:"Spawn",ps:"Triangle, Triangle, Square, Circle, X, L1, L2, Down, Down" },
+  { name:"Rain",cat:"Time",ps:"R2, X, L1, L1, L2, L2, L2, Circle" },
+  { name:"Sunny",cat:"Time",ps:"R2, X, L1, L1, L2, L2, L2, Square" },
+  { name:"Very Sunny",cat:"Time",ps:"R2, X, L1, L1, L2, L2, L2, Down" },
+  { name:"Sandstorm",cat:"Time",ps:"Up, Down, L1, L1, L2, L2, L1, L2, R1, R2" },
+  { name:"Fog",cat:"Time",ps:"R2, X, L1, L1, L2, L2, L2, X" },
+  { name:"Cloudy",cat:"Time",ps:"L2, Down, Down, Left, Square, Left, R2, Square, X, R1, L1, L1" },
+  { name:"Bobble Head Mode",cat:"World",ps:"Up, Up, Down, Down, Left, Right, Left, Right, Circle, X" },
 ];
 
-function psToXbox(psCode) {
-  const map = {'x':'A','cross':'A','circle':'B','square':'X','triangle':'Y','l1':'LB','l2':'LT','r1':'RB','r2':'RT'};
-  return psCode.split(',').map(p => {
-    const t = p.trim().toLowerCase();
-    return map[t] ? ' ' + map[t] : p;
-  }).join(',');
+function psToXbox(p){
+  const m={x:'A',cross:'A',circle:'B',square:'X',triangle:'Y',l1:'LB',l2:'LT',r1:'RB',r2:'RT'};
+  return p.split(',').map(s=>{const t=s.trim().toLowerCase();return m[t]?' '+m[t]:s;}).join(',');
 }
-CHEATS.forEach(c => { c.xbox = psToXbox(c.ps); });
+CHEATS.forEach(c=>{c.xbox=psToXbox(c.ps);});
 
 /* ════ STATE ════ */
-let currentCat      = 'all';
-let currentQuery    = '';
-let currentPlatform = 'ps';
-let sortAZ          = false;
-let listView        = false;
-let favorites       = new Set(JSON.parse(localStorage.getItem('sa_favs') || '[]'));
-function saveFavs() { localStorage.setItem('sa_favs', JSON.stringify([...favorites])); }
+let currentCat='all',currentQuery='',currentPlatform='ps',sortAZ=false,listView=false;
+let favorites=new Set(JSON.parse(localStorage.getItem('sa_favs')||'[]'));
+const saveFavs=()=>localStorage.setItem('sa_favs',JSON.stringify([...favorites]));
 
 /* ════ BUTTON PILLS ════ */
-const PS_CLASS = {
-  'x':'btn-cross','cross':'btn-cross','circle':'btn-circle',
-  'square':'btn-square','triangle':'btn-triangle',
-  'r1':'btn-r1','r2':'btn-r2','l1':'btn-l1','l2':'btn-l2',
-};
-const XBOX_CLASS = {
-  'a':'btn-a','b':'btn-b','x':'btn-x','y':'btn-y',
-  'rb':'btn-rb','rt':'btn-rt','lb':'btn-lb','lt':'btn-lt',
-};
-const PS_LABEL = {
-  'x':'✕','cross':'✕','circle':'○','square':'□','triangle':'△',
-  'up':'↑','down':'↓','left':'←','right':'→',
-  'r1':'R1','r2':'R2','l1':'L1','l2':'L2',
-};
-const XBOX_LABEL = {
-  'a':'A','b':'B','x':'X','y':'Y',
-  'rb':'RB','rt':'RT','lb':'LB','lt':'LT',
-  'up':'↑','down':'↓','left':'←','right':'→',
-};
-function getBtnClass(b) {
-  b = b.trim().toLowerCase();
-  return currentPlatform === 'ps' ? (PS_CLASS[b] || 'btn-dir') : (XBOX_CLASS[b] || 'btn-dir');
-}
-function getBtnLabel(b) {
-  b = b.trim().toLowerCase();
-  return currentPlatform === 'ps' ? (PS_LABEL[b] || b.toUpperCase()) : (XBOX_LABEL[b] || b.toUpperCase());
-}
-function parseCode(code) {
-  return code.split(',').map(p => {
-    p = p.trim();
-    return `<span class="btn-pill ${getBtnClass(p)}">${getBtnLabel(p)}</span>`;
-  }).join('');
+const PS_CLASS={x:'btn-cross',cross:'btn-cross',circle:'btn-circle',square:'btn-square',triangle:'btn-triangle',r1:'btn-r1',r2:'btn-r2',l1:'btn-l1',l2:'btn-l2'};
+const XBOX_CLASS={a:'btn-a',b:'btn-b',x:'btn-x',y:'btn-y',rb:'btn-rb',rt:'btn-rt',lb:'btn-lb',lt:'btn-lt'};
+const PS_LABEL={x:'✕',cross:'✕',circle:'○',square:'□',triangle:'△',up:'↑',down:'↓',left:'←',right:'→',r1:'R1',r2:'R2',l1:'L1',l2:'L2'};
+const XBOX_LABEL={a:'A',b:'B',x:'X',y:'Y',rb:'RB',rt:'RT',lb:'LB',lt:'LT',up:'↑',down:'↓',left:'←',right:'→'};
+
+function getBtnClass(b){b=b.trim().toLowerCase();return currentPlatform==='ps'?(PS_CLASS[b]||'btn-dir'):(XBOX_CLASS[b]||'btn-dir');}
+function getBtnLabel(b){b=b.trim().toLowerCase();return currentPlatform==='ps'?(PS_LABEL[b]||b.toUpperCase()):(XBOX_LABEL[b]||b.toUpperCase());}
+function parseCode(code){
+  return code.split(',').map(p=>{p=p.trim();return `<span class="btn-pill ${getBtnClass(p)}">${getBtnLabel(p)}</span>`;}).join('');
 }
 
 /* ════ TOAST ════ */
-function toast(msg, type = 'success', icon = '✓') {
-  const container = document.getElementById('toast-container');
-  const el = document.createElement('div');
-  el.className = `toast type-${type}`;
-  el.innerHTML = `<span class="toast-icon">${icon}</span><span>${msg}</span>`;
-  container.appendChild(el);
-  setTimeout(() => {
-    el.classList.add('remove');
-    setTimeout(() => el.remove(), 300);
-  }, 2200);
+function toast(msg,type='success',icon='✓'){
+  const c=document.getElementById('toast-container');
+  const el=document.createElement('div');
+  el.className=`toast type-${type}`;
+  el.innerHTML=`<span class="toast-icon">${icon}</span><span>${msg}</span>`;
+  c.appendChild(el);
+  setTimeout(()=>{el.classList.add('remove');setTimeout(()=>el.remove(),300);},2200);
 }
 
 /* ════ HIGHLIGHT ════ */
-function highlight(text, query) {
-  if (!query) return text;
-  const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
-  return text.replace(re, '<mark>$1</mark>');
+function highlight(t,q){
+  if(!q)return t;
+  const re=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  return t.replace(re,'<mark>$1</mark>');
 }
 
 /* ════ BUILD CARD ════ */
-function buildCard(ch, query) {
-  const card = document.createElement('div');
-  const isFav = favorites.has(ch.name);
-  const code = currentPlatform === 'ps' ? ch.ps : ch.xbox;
-  card.className = 'card' + (isFav ? ' is-fav' : '');
+function buildCard(ch,query){
+  const card=document.createElement('div');
+  const isFav=favorites.has(ch.name);
+  const code=currentPlatform==='ps'?ch.ps:ch.xbox;
+  card.className='card'+(isFav?' is-fav':'');
+  const corner='<div class="card-corner"></div>';
 
-  if (listView) {
-    card.innerHTML = `
+  if(listView){
+    card.innerHTML=`${corner}
       <div class="card-left">
         <div class="card-category">${ch.cat}</div>
-        <div class="card-name">${highlight(ch.name, query)}</div>
+        <div class="card-name">${highlight(ch.name,query)}</div>
       </div>
       <div class="card-code-wrap">
-        <div class="card-code ${currentPlatform === 'xbox' ? 'xbox' : ''}">${parseCode(code)}</div>
+        <div class="card-code ${currentPlatform==='xbox'?'xbox':''}">${parseCode(code)}</div>
       </div>
       <div class="card-actions">
-        <button class="fav-btn ${isFav ? 'active' : ''}" data-name="${ch.name}" title="Favorite">★</button>
+        <button class="fav-btn ${isFav?'active':''}" data-name="${ch.name}" title="Favorite">★</button>
         <button class="copy-btn" data-code="${code}">COPY</button>
-      </div>
-    `;
+      </div>`;
   } else {
-    card.innerHTML = `
+    card.innerHTML=`${corner}
       <div class="card-actions">
-        <button class="fav-btn ${isFav ? 'active' : ''}" data-name="${ch.name}" title="Favorite">★</button>
+        <button class="fav-btn ${isFav?'active':''}" data-name="${ch.name}" title="Favorite">★</button>
         <button class="copy-btn" data-code="${code}">COPY</button>
       </div>
       <div class="card-category">${ch.cat}</div>
-      <div class="card-name">${highlight(ch.name, query)}</div>
-      <div class="card-code ${currentPlatform === 'xbox' ? 'xbox' : ''}">${parseCode(code)}</div>
-    `;
+      <div class="card-name">${highlight(ch.name,query)}</div>
+      <div class="card-code ${currentPlatform==='xbox'?'xbox':''}">${parseCode(code)}</div>`;
   }
 
-  card.querySelector('.copy-btn').addEventListener('click', e => {
-    const btn = e.currentTarget;
-    navigator.clipboard.writeText(btn.dataset.code).then(() => {
-      btn.textContent = 'COPIED';
-      btn.classList.add('copied');
-      toast(`Copied: <strong>${ch.name}</strong>`, 'success', '📋');
-      setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('copied'); }, 1600);
+  card.querySelector('.copy-btn').addEventListener('click',e=>{
+    const btn=e.currentTarget;
+    navigator.clipboard.writeText(btn.dataset.code).then(()=>{
+      btn.textContent='COPIED';btn.classList.add('copied');
+      toast(`Copied: <strong>${ch.name}</strong>`,'success','📋');
+      setTimeout(()=>{btn.textContent='COPY';btn.classList.remove('copied');},1600);
     });
   });
-
-  card.querySelector('.fav-btn').addEventListener('click', e => {
-    const name = e.currentTarget.dataset.name;
-    if (favorites.has(name)) {
-      favorites.delete(name);
-      toast('Removed from favorites', 'info', '☆');
-    } else {
-      favorites.add(name);
-      toast('Added to favorites', 'accent', '★');
-    }
-    saveFavs(); renderFavs(); applyFilters();
+  card.querySelector('.fav-btn').addEventListener('click',e=>{
+    const name=e.currentTarget.dataset.name;
+    if(favorites.has(name)){favorites.delete(name);toast('Removed from favorites','info','☆');}
+    else{favorites.add(name);toast('Added to favorites','accent','★');}
+    saveFavs();renderFavs();applyFilters();
   });
-
   return card;
 }
 
-/* ════ RENDER FAVS ════ */
-function renderFavs() {
-  const section = document.getElementById('favSection');
-  const grid    = document.getElementById('favGrid');
-  const countEl = document.getElementById('favCount');
-  grid.innerHTML = '';
-  if (favorites.size === 0) { section.classList.remove('has-favs'); return; }
-  section.classList.add('has-favs');
-  countEl.textContent = `${favorites.size} saved`;
-  CHEATS.filter(c => favorites.has(c.name)).forEach(ch => {
-    const card = buildCard(ch, '');
-    card.style.animation = 'none';
-    grid.appendChild(card);
+/* ════ RENDER ════ */
+function renderFavs(){
+  const sec=document.getElementById('favSection');
+  const grid=document.getElementById('favGrid');
+  const cnt=document.getElementById('favCount');
+  grid.innerHTML='';
+  if(favorites.size===0){sec.classList.remove('has-favs');return;}
+  sec.classList.add('has-favs');
+  cnt.textContent=`${favorites.size} saved`;
+  CHEATS.filter(c=>favorites.has(c.name)).forEach(ch=>{
+    const card=buildCard(ch,'');card.style.animation='none';grid.appendChild(card);
   });
 }
 
-/* ════ RENDER CARDS ════ */
-function renderCards(list, query) {
-  const grid    = document.getElementById('grid');
-  const noRes   = document.getElementById('noResults');
-  const countEl = document.getElementById('countNum');
-  [...grid.querySelectorAll('.card')].forEach(c => c.remove());
-  countEl.textContent = list.length;
-  if (list.length === 0) { noRes.style.display = 'block'; return; }
-  noRes.style.display = 'none';
-  list.forEach((ch, i) => {
-    const card = buildCard(ch, query);
-    card.style.animationDelay = `${Math.min(i * 16, 160)}ms`;
-    grid.insertBefore(card, noRes);
+function renderCards(list,query){
+  const grid=document.getElementById('grid');
+  const noRes=document.getElementById('noResults');
+  const cnt=document.getElementById('countNum');
+  [...grid.querySelectorAll('.card')].forEach(c=>c.remove());
+  cnt.textContent=list.length;
+  if(list.length===0){noRes.style.display='block';return;}
+  noRes.style.display='none';
+  list.forEach((ch,i)=>{
+    const card=buildCard(ch,query);
+    card.style.animationName='cardPop';
+    card.style.animationDuration='.28s';
+    card.style.animationFillMode='both';
+    card.style.animationTimingFunction='cubic-bezier(.22,.68,0,1.2)';
+    card.style.animationDelay=`${Math.min(i*12,200)}ms`;
+    grid.insertBefore(card,noRes);
   });
 }
 
 /* ════ FILTERS ════ */
-function applyFilters() {
-  let list = [...CHEATS];
-  if (currentCat !== 'all') list = list.filter(c => c.cat === currentCat);
-  if (currentQuery) {
-    const q = currentQuery.toLowerCase();
-    list = list.filter(c =>
-      c.name.toLowerCase().includes(q) ||
-      c.ps.toLowerCase().includes(q) ||
-      c.cat.toLowerCase().includes(q)
-    );
+function applyFilters(){
+  let list=[...CHEATS];
+  if(currentCat!=='all')list=list.filter(c=>c.cat===currentCat);
+  if(currentQuery){
+    const q=currentQuery.toLowerCase();
+    list=list.filter(c=>c.name.toLowerCase().includes(q)||c.ps.toLowerCase().includes(q)||c.cat.toLowerCase().includes(q));
   }
-  if (sortAZ) list.sort((a, b) => a.name.localeCompare(b.name));
-  renderCards(list, currentQuery);
+  if(sortAZ)list.sort((a,b)=>a.name.localeCompare(b.name));
+  renderCards(list,currentQuery);
 }
 
-function updateCatCounts() {
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    const cat = btn.dataset.cat;
-    const count = cat === 'all' ? CHEATS.length : CHEATS.filter(c => c.cat === cat).length;
-    let span = btn.querySelector('.cat-count');
-    if (!span) { span = document.createElement('span'); span.className = 'cat-count'; btn.appendChild(span); }
-    span.textContent = count;
+function updateCatCounts(){
+  document.querySelectorAll('.filter-btn').forEach(btn=>{
+    const cat=btn.dataset.cat;
+    const count=cat==='all'?CHEATS.length:CHEATS.filter(c=>c.cat===cat).length;
+    let span=btn.querySelector('.cat-count');
+    if(!span){span=document.createElement('span');span.className='cat-count';btn.appendChild(span);}
+    span.textContent=count;
   });
 }
 
 /* ════ EVENTS ════ */
-const searchEl = document.getElementById('search');
-const clearBtn = document.getElementById('searchClear');
-searchEl.addEventListener('input', e => {
-  currentQuery = e.target.value.trim();
-  clearBtn.classList.toggle('visible', currentQuery.length > 0);
+const searchEl=document.getElementById('search');
+const clearBtn=document.getElementById('searchClear');
+searchEl.addEventListener('input',e=>{
+  currentQuery=e.target.value.trim();
+  clearBtn.classList.toggle('visible',currentQuery.length>0);
   applyFilters();
 });
-clearBtn.addEventListener('click', () => {
-  searchEl.value = ''; currentQuery = '';
-  clearBtn.classList.remove('visible');
-  searchEl.focus(); applyFilters();
+clearBtn.addEventListener('click',()=>{
+  searchEl.value='';currentQuery='';clearBtn.classList.remove('visible');
+  searchEl.focus();applyFilters();
 });
 
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentCat = btn.dataset.cat;
-    applyFilters();
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');currentCat=btn.dataset.cat;applyFilters();
   });
 });
 
-document.querySelectorAll('.platform-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentPlatform = btn.dataset.platform;
-    const isPS = currentPlatform === 'ps';
-    toast(`Switched to ${isPS ? 'PlayStation' : 'Xbox'} layout`, 'info', isPS ? '🎮' : '🟢');
-    renderFavs(); applyFilters();
+document.querySelectorAll('.platform-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.platform-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');currentPlatform=btn.dataset.platform;
+    const isPS=currentPlatform==='ps';
+    toast(`Switched to ${isPS?'PlayStation':'Xbox'} layout`,'info',isPS?'🎮':'🟢');
+    renderFavs();applyFilters();
   });
 });
 
-document.getElementById('themeToggle').addEventListener('click', () => {
+document.getElementById('themeToggle').addEventListener('click',()=>{
   document.documentElement.classList.toggle('light');
-  document.getElementById('themeToggle').textContent =
-    document.documentElement.classList.contains('light') ? '☀️' : '🌙';
+  document.getElementById('themeToggle').textContent=document.documentElement.classList.contains('light')?'☀️':'🌙';
 });
 
-document.getElementById('sortBtn').addEventListener('click', () => {
-  sortAZ = !sortAZ;
-  document.getElementById('sortBtn').classList.toggle('active', sortAZ);
-  document.getElementById('sortBtn').textContent = sortAZ ? 'Z↓' : 'A↓';
+document.getElementById('sortBtn').addEventListener('click',()=>{
+  sortAZ=!sortAZ;
+  document.getElementById('sortBtn').classList.toggle('active',sortAZ);
+  document.getElementById('sortBtn').textContent=sortAZ?'Z↓':'A↓';
   applyFilters();
 });
 
-document.getElementById('gridViewBtn').addEventListener('click', () => {
-  listView = false;
+document.getElementById('gridViewBtn').addEventListener('click',()=>{
+  listView=false;
   document.getElementById('grid').classList.remove('list-view');
   document.getElementById('gridViewBtn').classList.add('active');
   document.getElementById('listViewBtn').classList.remove('active');
   applyFilters();
 });
-document.getElementById('listViewBtn').addEventListener('click', () => {
-  listView = true;
+document.getElementById('listViewBtn').addEventListener('click',()=>{
+  listView=true;
   document.getElementById('grid').classList.add('list-view');
   document.getElementById('listViewBtn').classList.add('active');
   document.getElementById('gridViewBtn').classList.remove('active');
   applyFilters();
 });
 
-document.getElementById('randomBtn').addEventListener('click', () => {
-  const random = CHEATS[Math.floor(Math.random() * CHEATS.length)];
-  searchEl.value = random.name;
-  currentQuery = random.name;
-  clearBtn.classList.add('visible');
-  currentCat = 'all';
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+document.getElementById('randomBtn').addEventListener('click',()=>{
+  const r=CHEATS[Math.floor(Math.random()*CHEATS.length)];
+  searchEl.value=r.name;currentQuery=r.name;clearBtn.classList.add('visible');
+  currentCat='all';
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   document.querySelector('.filter-btn[data-cat="all"]').classList.add('active');
-  applyFilters();
-  toast(`Random: <strong>${random.name}</strong>`, 'accent', '🎲');
+  applyFilters();toast(`Random: <strong>${r.name}</strong>`,'accent','🎲');
 });
 
-document.getElementById('exportBtn').addEventListener('click', () => {
-  if (favorites.size === 0) { toast('Star some cheats first!', 'info', '★'); return; }
-  const lines = CHEATS
-    .filter(c => favorites.has(c.name))
-    .map(c => `${c.name}\n  PS:   ${c.ps}\n  Xbox: ${c.xbox}`);
-  const text = `GTA San Andreas — Saved Cheats\n${'═'.repeat(40)}\n\n${lines.join('\n\n')}`;
-  navigator.clipboard.writeText(text).then(() => {
-    toast(`${favorites.size} cheat${favorites.size > 1 ? 's' : ''} copied!`, 'success', '📤');
-  });
+document.getElementById('exportBtn').addEventListener('click',()=>{
+  if(favorites.size===0){toast('Star some cheats first!','info','★');return;}
+  const lines=CHEATS.filter(c=>favorites.has(c.name)).map(c=>`${c.name}\n  PS:   ${c.ps}\n  Xbox: ${c.xbox}`);
+  const text=`GTA San Andreas — Saved Cheats\n${'═'.repeat(40)}\n\n${lines.join('\n\n')}`;
+  navigator.clipboard.writeText(text).then(()=>{toast(`${favorites.size} cheat${favorites.size>1?'s':''} copied!`,'success','📤');});
 });
 
-document.getElementById('clearFavsBtn').addEventListener('click', () => {
-  favorites.clear(); saveFavs(); renderFavs(); applyFilters();
-  toast('Favorites cleared', 'info', '🗑');
+document.getElementById('clearFavsBtn').addEventListener('click',()=>{
+  favorites.clear();saveFavs();renderFavs();applyFilters();toast('Favorites cleared','info','🗑');
 });
 
-document.addEventListener('keydown', e => {
-  if (e.key === '/' && document.activeElement !== searchEl) {
-    e.preventDefault(); searchEl.focus(); searchEl.select();
-  }
-  if (e.key === 'Escape' && document.activeElement === searchEl) {
-    searchEl.value = ''; currentQuery = '';
-    clearBtn.classList.remove('visible');
-    searchEl.blur(); applyFilters();
-  }
+document.addEventListener('keydown',e=>{
+  if(e.key==='/'&&document.activeElement!==searchEl){e.preventDefault();searchEl.focus();searchEl.select();}
+  if(e.key==='Escape'&&document.activeElement===searchEl){searchEl.value='';currentQuery='';clearBtn.classList.remove('visible');searchEl.blur();applyFilters();}
 });
 
-const scrollTopBtn = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => {
-  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-});
-scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top:0, behavior:'smooth' }); });
+const scrollTopBtn=document.getElementById('scrollTop');
+window.addEventListener('scroll',()=>{scrollTopBtn.classList.toggle('visible',window.scrollY>400);});
+scrollTopBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
 
 /* ════ INIT ════ */
-updateCatCounts();
-renderFavs();
-applyFilters();
+updateCatCounts();renderFavs();applyFilters();
 </script>
 </body>
 </html>
