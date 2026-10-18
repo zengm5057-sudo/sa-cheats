@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>SA Cheats — GTA San Andreas</title>
+<title>Cheat Vault — GTA San Andreas &amp; GTA V</title>
+<meta name="description" content="Cheat Vault: fast GTA San Andreas and GTA V story mode cheat reference. PlayStation, Xbox, PC and phone codes. Old-gen vs new-gen differences.">
+<meta name="theme-color" content="#070709">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Barlow+Condensed:wght@300;400;600;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════
@@ -23,8 +25,9 @@
   --muted:      #46465c;
   --muted2:     #7878a0;
   --tag-bg:     #14141f;
-  --glow:       rgba(240,82,42,0.14);
+  --glow:       rgba(var(--accent-rgb),0.14);
   --tr:         0.18s ease;
+  --accent-rgb: 240,82,42;
 
   /* fluid spacing tokens */
   --s1: clamp(4px,  0.5vw, 8px);
@@ -49,7 +52,7 @@
   --muted:      #9898b4;
   --muted2:     #606078;
   --tag-bg:     #e0dfed;
-  --glow:       rgba(240,82,42,0.10);
+  --glow:       rgba(var(--accent-rgb),0.10);
 }
 
 /* ══════════════════════════════════════════════
@@ -75,7 +78,7 @@ body::before{
 /* diagonal stripes */
 body::after{
   content:'';position:fixed;inset:0;
-  background:repeating-linear-gradient(-55deg,transparent,transparent 24px,rgba(240,82,42,.018) 24px,rgba(240,82,42,.018) 25px);
+  background:repeating-linear-gradient(-55deg,transparent,transparent 24px,rgba(var(--accent-rgb),.018) 24px,rgba(var(--accent-rgb),.018) 25px);
   pointer-events:none;z-index:0;
 }
 
@@ -90,7 +93,7 @@ header{
 .header-orb{
   position:absolute;top:-80px;left:50%;transform:translateX(-50%);
   width:min(900px,140vw);height:clamp(200px,35vw,400px);
-  background:radial-gradient(ellipse at 50% 30%,rgba(240,82,42,.2) 0%,rgba(240,82,42,.04) 45%,transparent 70%);
+  background:radial-gradient(ellipse at 50% 30%,rgba(var(--accent-rgb),.2) 0%,rgba(var(--accent-rgb),.04) 45%,transparent 70%);
   pointer-events:none;
 }
 .header-stripe{
@@ -141,7 +144,7 @@ header{
 }
 .badge-ps  {background:rgba(0,80,255,.12);border:1px solid rgba(0,80,255,.3);color:#6699ff;}
 .badge-xbox{background:rgba(16,200,16,.1);border:1px solid rgba(16,200,16,.3);color:#4dcc4d;}
-.badge-ver {background:rgba(240,82,42,.1);border:1px solid rgba(240,82,42,.3);color:var(--accent);}
+.badge-ver {background:rgba(var(--accent-rgb),.1);border:1px solid rgba(var(--accent-rgb),.3);color:var(--accent);}
 .header-divider{
   height:1px;
   background:linear-gradient(90deg,transparent,var(--accent) 35%,var(--accent2) 65%,transparent);
@@ -213,8 +216,8 @@ header{
   display:flex;align-items:center;gap:5px;white-space:nowrap;
 }
 .action-btn:hover{border-color:var(--accent);color:var(--accent);}
-.action-btn.accent{border-color:rgba(240,82,42,.4);color:var(--accent);background:rgba(240,82,42,.08);}
-.action-btn.accent:hover{background:rgba(240,82,42,.16);}
+.action-btn.accent{border-color:rgba(var(--accent-rgb),.4);color:var(--accent);background:rgba(var(--accent-rgb),.08);}
+.action-btn.accent:hover{background:rgba(var(--accent-rgb),.16);}
 
 /* ══════════════════════════════════════════════
    FILTER BAR
@@ -236,7 +239,7 @@ header{
   background:var(--tag-bg);padding:1px 5px;border-radius:2px;color:var(--muted);
 }
 .filter-btn:hover{border-color:var(--accent);color:var(--accent);}
-.filter-btn:hover .cat-count{background:rgba(240,82,42,.1);}
+.filter-btn:hover .cat-count{background:rgba(var(--accent-rgb),.1);}
 .filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
 .filter-btn.active .cat-count{background:rgba(0,0,0,.25);color:rgba(255,255,255,.8);}
 
@@ -256,7 +259,7 @@ header{
   border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;
   font-size:clamp(11px,1.3vw,15px);transition:all var(--tr);
 }
-.vs-btn:hover,.vs-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(240,82,42,.08);}
+.vs-btn:hover,.vs-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(var(--accent-rgb),.08);}
 
 /* ══════════════════════════════════════════════
    GRID — THE STAR
@@ -311,7 +314,7 @@ header{
 .card::before{
   content:'';
   position:absolute;inset:0;
-  background:linear-gradient(105deg,transparent 40%,rgba(240,82,42,.07) 50%,transparent 60%);
+  background:linear-gradient(105deg,transparent 40%,rgba(var(--accent-rgb),.07) 50%,transparent 60%);
   transform:translateX(-100%);
   transition:transform .5s ease;
   pointer-events:none;z-index:0;
@@ -334,14 +337,14 @@ header{
 }
 .card:hover{
   background:var(--card-hover);
-  border-color:rgba(240,82,42,.35);
+  border-color:rgba(var(--accent-rgb),.35);
   transform:translateY(-3px) scale(1.01);
-  box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 0 1px rgba(240,82,42,.06),0 0 28px rgba(240,82,42,.05);
+  box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 0 1px rgba(var(--accent-rgb),.06),0 0 28px rgba(var(--accent-rgb),.05);
   z-index:2;
 }
 .card:hover::before{transform:translateX(100%);}
 .card:hover::after{opacity:1;}
-.card:hover .card-corner{border-color:transparent rgba(240,82,42,.45) transparent transparent;}
+.card:hover .card-corner{border-color:transparent rgba(var(--accent-rgb),.45) transparent transparent;}
 .card.is-fav{border-color:rgba(251,191,36,.24);}
 .card.is-fav::after{background:var(--accent2);opacity:1;}
 .card.is-fav .card-corner{border-color:transparent rgba(251,191,36,.35) transparent transparent;}
@@ -476,7 +479,7 @@ mark{background:rgba(251,191,36,.24);color:var(--accent2);border-radius:2px;padd
 .toast.type-success .toast-icon{color:var(--accent3);}
 .toast.type-info   {border-color:rgba(66,153,255,.38);}
 .toast.type-info   .toast-icon{color:#6699ff;}
-.toast.type-accent {border-color:rgba(240,82,42,.38);}
+.toast.type-accent {border-color:rgba(var(--accent-rgb),.38);}
 .toast.type-accent .toast-icon{color:var(--accent);}
 
 /* ══════════════════════════════════════════════
@@ -580,12 +583,170 @@ kbd{
 /* touch devices: remove hover lift (prevents sticky states) */
 @media(hover:none){
   .card:hover{transform:none;box-shadow:none;}
-  .card:active{background:var(--card-hover);border-color:rgba(240,82,42,.25);}
+  .card:active{background:var(--card-hover);border-color:rgba(var(--accent-rgb),.25);}
 }
 
 /* reduced motion */
 @media(prefers-reduced-motion:reduce){
   .card,*{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+
+/* ══════════════════════════════════════════════
+   MULTI-GAME ADDITIONS
+══════════════════════════════════════════════ */
+[hidden]{display:none!important;}
+.logo{font-weight:400;}
+
+/* GTA V accent swap */
+html[data-game="v"]{--accent:#a66bff;--accent-rgb:166,107,255;}
+html.light[data-game="v"]{--accent:#7c3aed;--accent-rgb:124,58,237;}
+
+/* game tabs */
+.game-tabs{
+  display:flex;gap:0;
+  margin-top:clamp(16px,2.5vw,28px);
+  border-bottom:1px solid var(--border);
+}
+.game-tab{
+  flex:1;max-width:360px;
+  background:none;border:none;border-bottom:3px solid transparent;margin-bottom:-1px;
+  color:var(--muted2);cursor:pointer;text-align:left;
+  padding:clamp(10px,1.4vw,16px) clamp(12px,2vw,26px);
+  font-family:'Barlow Condensed',sans-serif;
+  transition:color var(--tr),border-color var(--tr),background var(--tr);
+}
+.game-tab .gt-name{
+  display:block;font-family:'Black Han Sans',sans-serif;
+  font-size:clamp(16px,2.3vw,26px);letter-spacing:1px;line-height:1.1;
+}
+.game-tab .gt-sub{
+  display:block;margin-top:4px;
+  font-family:'Fira Code',monospace;font-size:clamp(8px,.85vw,10px);
+  letter-spacing:1.5px;color:var(--muted);
+}
+.game-tab:hover{color:var(--text);}
+.game-tab.active{
+  color:var(--text);border-bottom-color:var(--accent);
+  background:linear-gradient(180deg,transparent,rgba(var(--accent-rgb),.08));
+}
+.game-tab.active .gt-sub{color:var(--accent);}
+.game-tab:focus-visible,.seg-btn:focus-visible,.platform-btn:focus-visible,
+.filter-btn:focus-visible,.action-btn:focus-visible,.vs-btn:focus-visible,
+.fav-btn:focus-visible,.copy-btn:focus-visible,.icon-btn:focus-visible,
+.diff summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+/* platform bar — 4 buttons */
+.platform-bar{flex-wrap:wrap;}
+.platform-btn{border-radius:0;}
+.platform-btn:first-of-type{border-radius:3px 0 0 3px;}
+.platform-btn:last-of-type{border-radius:0 3px 3px 0;}
+.platform-btn.active.pc   {background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28);color:var(--text);}
+.platform-btn.active.phone{background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.42);color:var(--accent2);}
+.platform-btn:disabled{opacity:.3;cursor:not-allowed;}
+
+/* version bar */
+.version-bar{
+  display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center;
+  margin-top:clamp(10px,1.4vw,18px);
+}
+.seg{display:flex;}
+.seg-btn{
+  background:var(--surface);border:1px solid var(--border);color:var(--muted2);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1.2px;
+  font-size:clamp(11px,1.2vw,14px);text-transform:uppercase;
+  padding:clamp(6px,.8vw,9px) clamp(10px,1.4vw,16px);cursor:pointer;
+  transition:all var(--tr);white-space:nowrap;
+}
+.seg-btn:first-child{border-radius:3px 0 0 3px;}
+.seg-btn:last-child{border-radius:0 3px 3px 0;margin-left:-1px;}
+.seg-btn:hover{color:var(--text);border-color:var(--border-hi);}
+.seg-btn.active{
+  background:rgba(var(--accent-rgb),.14);border-color:rgba(var(--accent-rgb),.5);
+  color:var(--accent);position:relative;z-index:1;
+}
+.version-note{
+  flex:1;min-width:220px;
+  font-family:'Fira Code',monospace;font-size:clamp(9px,1vw,11px);
+  color:var(--muted2);line-height:1.6;
+}
+.version-note strong{color:var(--accent);font-weight:500;}
+
+/* differences panel */
+.diff{
+  margin-top:clamp(8px,1vw,14px);
+  background:var(--surface);border:1px solid var(--border);border-radius:3px;
+}
+.diff summary{
+  cursor:pointer;list-style:none;
+  padding:clamp(8px,1vw,12px) clamp(12px,1.5vw,18px);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1.5px;
+  font-size:clamp(11px,1.2vw,14px);text-transform:uppercase;color:var(--muted2);
+  transition:color var(--tr);
+}
+.diff summary::-webkit-details-marker{display:none;}
+.diff summary::before{content:'▸';display:inline-block;width:1.4em;color:var(--accent);}
+.diff[open] summary::before{content:'▾';}
+.diff summary:hover{color:var(--text);}
+.diff-wrap{overflow-x:auto;border-top:1px solid var(--border);}
+.diff-table{
+  width:100%;border-collapse:collapse;
+  font-family:'Fira Code',monospace;font-size:clamp(9px,1vw,11px);
+}
+.diff-table th,.diff-table td{
+  padding:8px clamp(8px,1.2vw,14px);text-align:center;
+  border-bottom:1px solid var(--border);white-space:nowrap;
+}
+.diff-table th{color:var(--muted2);font-weight:500;letter-spacing:1px;}
+.diff-table th:first-child,.diff-table td:first-child{text-align:left;color:var(--text);white-space:normal;}
+.diff-table .yes{color:var(--accent3);}
+.diff-table .no {color:#ff7070;}
+.diff-notes{
+  padding:clamp(10px,1.2vw,14px) clamp(12px,1.5vw,18px);
+  font-family:'Fira Code',monospace;font-size:clamp(9px,1vw,11px);
+  color:var(--muted2);line-height:1.8;
+}
+.diff-notes li{margin-left:1.2em;}
+.diff-notes b{color:var(--text);font-weight:500;}
+
+/* card extras */
+.card-tags,.card-note,.card-req{position:relative;z-index:1;}
+.card.has-extra .card-name{margin-bottom:6px;}
+.card-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px;}
+.tag{
+  font-family:'Fira Code',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  padding:2px 6px;border-radius:2px;border:1px solid var(--border-hi);color:var(--muted2);
+}
+.tag-new {border-color:rgba(52,211,153,.4);color:var(--accent3);background:rgba(52,211,153,.07);}
+.tag-lock{border-color:rgba(251,191,36,.4);color:var(--accent2);background:rgba(251,191,36,.07);}
+.tag-warn{border-color:rgba(255,112,112,.4);color:#ff7070;background:rgba(255,112,112,.07);}
+.card-note{
+  font-size:clamp(12px,1.25vw,15px);color:var(--muted2);
+  line-height:1.25;margin-bottom:10px;
+}
+.card-req{
+  font-family:'Fira Code',monospace;font-size:clamp(8px,.85vw,10px);
+  color:var(--accent2);line-height:1.6;margin-bottom:10px;
+}
+.word-chip,.phone-chip{
+  font-family:'Fira Code',monospace;font-weight:500;
+  font-size:clamp(11px,1.2vw,14px);letter-spacing:1.5px;
+  padding:4px 10px;border-radius:3px;
+  border:1px solid rgba(var(--accent-rgb),.3);
+  background:rgba(var(--accent-rgb),.09);color:var(--accent);
+}
+.phone-chip{border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.08);color:var(--accent2);}
+.word-alt{
+  font-family:'Fira Code',monospace;font-size:9px;color:var(--muted);
+  align-self:center;margin-left:6px;letter-spacing:.5px;
+}
+.list-view .card-left{min-width:0;}
+.list-view .card-note,.list-view .card-req,.list-view .card-tags{margin-bottom:0;margin-top:2px;}
+
+@media(max-width:600px){
+  .game-tab{max-width:none;}
+  .game-tab .gt-sub{letter-spacing:.5px;}
+  .seg{width:100%;}
+  .seg-btn{flex:1;white-space:normal;}
 }
 </style>
 </head>
@@ -596,25 +757,33 @@ kbd{
   <div class="header-orb"></div>
   <div class="header-stripe"></div>
   <div class="header-actions">
-    <button class="icon-btn" id="themeToggle" title="Toggle theme">🌙</button>
+    <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">🌙</button>
   </div>
   <div class="logo-wrap">
-    <div class="logo">SA <span class="accent-word">CHEATS</span></div>
+    <div class="logo">CHEAT <span class="accent-word">VAULT</span></div>
   </div>
-  <div class="subtitle">Grand Theft Auto · San Andreas · Cheat Reference</div>
-  <div class="header-badges">
-    <span class="badge badge-ps">PS4 · PS5</span>
-    <span class="badge badge-xbox">Xbox One · Series X</span>
-    <span class="badge badge-ver">✓ Verified</span>
-  </div>
+  <div class="subtitle" id="subtitle"></div>
+  <div class="header-badges" id="badges"></div>
   <div class="header-divider"></div>
 </header>
 
-<!-- SHELL wraps everything below header -->
+<!-- SHELL -->
 <div class="shell">
 
+  <!-- GAME TABS -->
+  <div class="game-tabs" role="tablist" aria-label="Choose game">
+    <button class="game-tab active" role="tab" aria-selected="true" data-game="sa">
+      <span class="gt-name">GTA San Andreas</span>
+      <span class="gt-sub">Classic · <span id="cntSA">0</span> cheats</span>
+    </button>
+    <button class="game-tab" role="tab" aria-selected="false" data-game="v">
+      <span class="gt-name">GTA V</span>
+      <span class="gt-sub">Story Mode · <span id="cntV">0</span> cheats</span>
+    </button>
+  </div>
+
   <!-- PLATFORM SWITCHER -->
-  <div class="platform-bar">
+  <div class="platform-bar" id="platformBar">
     <button class="platform-btn active ps" data-platform="ps">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8.984 2.596v17.548l3.915 1.261V6.688c0-.69.304-1.151.794-.991.636.181.762.814.762 1.505v5.876c1.689.831 4.21-.175 4.21-3.126 0-3.188-1.128-4.812-4.491-5.893a32.9 32.9 0 0 0-5.19-.463zm6.12 14.367c-1.128.35-2.317.42-3.547.182v2.005l6.354 2.054s3.667-.617 3.667-4.443c0-3.798-3.21-4.606-5.149-5.27v3.943c0 .766.298 1.282.675 1.529zM3 19.641l5.09 1.73v-2.003L3 17.71v1.931z"/></svg>
       PlayStation
@@ -623,14 +792,56 @@ kbd{
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M4.102 7.323a9.96 9.96 0 0 0-2.08 6.099c.015 2.712 1.086 5.216 2.913 7.057.105-.115.219-.244.345-.394.765-.906 2.011-2.572 3.28-4.752 1.104-1.902 1.9-3.742 2.368-5.272a7.655 7.655 0 0 0-.545-.567c-.843-.793-2.082-1.522-3.544-2.034a11.83 11.83 0 0 0-2.737-.137zm15.8 0a11.831 11.831 0 0 0-2.737.137c-1.462.512-2.701 1.241-3.544 2.034a7.655 7.655 0 0 0-.545.567c.468 1.53 1.264 3.37 2.368 5.272 1.27 2.18 2.515 3.846 3.28 4.752.126.15.24.279.345.394 1.827-1.841 2.898-4.345 2.913-7.057a9.96 9.96 0 0 0-2.08-6.099zM12 3.03c-1.26-.02-2.862.332-4.297 1.044 1.58.576 2.99 1.424 3.977 2.352.111.103.215.21.32.318.105-.108.209-.215.32-.318.987-.928 2.396-1.776 3.977-2.352C14.862 3.362 13.26 3.01 12 3.03zM4.12 20.66c.013.014.025.028.038.041A9.996 9.996 0 0 0 12 24a9.996 9.996 0 0 0 7.842-3.299c.013-.013.025-.027.038-.04-.075-.085-.153-.178-.248-.289-.788-.934-2.068-2.641-3.368-4.874-1.068-1.84-1.846-3.643-2.303-5.15-.109.1-.22.2-.322.305L12 11.164l-.639-.611c-.101-.104-.213-.206-.322-.305-.457 1.507-1.235 3.31-2.303 5.15-1.3 2.233-2.58 3.94-3.368 4.874-.095.111-.173.204-.248.289z"/></svg>
       Xbox
     </button>
+    <button class="platform-btn pc" data-platform="pc" hidden>
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      PC
+    </button>
+    <button class="platform-btn phone" data-platform="phone" hidden>
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+      Phone
+    </button>
   </div>
+
+  <!-- GTA V: VERSION BAR -->
+  <div class="version-bar" id="versionBar" hidden>
+    <div class="seg" role="group" aria-label="Console generation">
+      <button class="seg-btn active" data-gen="new">PS4 · PS5 · Xbox One · Series</button>
+      <button class="seg-btn" data-gen="old">PS3 · Xbox 360</button>
+    </div>
+    <div class="version-note" id="versionNote"></div>
+  </div>
+
+  <!-- GTA V: VERSION DIFFERENCES -->
+  <details class="diff" id="diffPanel" hidden>
+    <summary>What works where</summary>
+    <div class="diff-wrap">
+      <table class="diff-table">
+        <thead>
+          <tr><th>Feature</th><th>PS3 · 360</th><th>PS4 · One</th><th>PS5 · Series</th><th>PC</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Button combos</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td></tr>
+          <tr><td>Typed console words</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td></tr>
+          <tr><td>Phone numbers (1-999-…)</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Dodo · Duke O’Death · Kraken</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Director Mode · Black phone</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="diff-notes">
+      <li><b>PS4 and PS5 share every code.</b> No PS5-only cheat turned up in any source. The real split is old-gen (PS3 · 360) vs everything newer.</li>
+      <li><b>Dodo, Duke O’Death, Kraken:</b> phone or PC only, and locked until you unlock them in the save. Duke unlock: most guides say the Duel random event; a few say Tonya’s first mission. Try both.</li>
+      <li><b>Phone cheats:</b> press Up for the phone, open Contacts, press Square (PS) or X (Xbox) for the dial pad, dial, call.</li>
+      <li><b>Cheats are story mode only.</b> They switch off trophies and achievements until you reload a clean save. No money cheat exists.</li>
+    </ul>
+  </details>
 
   <!-- CONTROLS -->
   <div class="controls">
     <div class="search-wrap">
       <svg class="s-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-      <input id="search" type="text" placeholder="Search cheat or button (e.g. R1, Circle, health)…" autocomplete="off" spellcheck="false" inputmode="search">
-      <button class="search-clear" id="searchClear" title="Clear">✕</button>
+      <input id="search" type="text" placeholder="Search…" autocomplete="off" spellcheck="false" inputmode="search" aria-label="Search cheats">
+      <button class="search-clear" id="searchClear" title="Clear" aria-label="Clear search">✕</button>
     </div>
     <div class="ctrl-actions">
       <button class="action-btn accent" id="randomBtn" title="Random cheat">
@@ -645,25 +856,16 @@ kbd{
     </div>
   </div>
 
-  <!-- FILTER BAR -->
-  <div class="filter-bar">
-    <button class="filter-btn active" data-cat="all">All</button>
-    <button class="filter-btn" data-cat="Player">Player</button>
-    <button class="filter-btn" data-cat="Weapons">Weapons</button>
-    <button class="filter-btn" data-cat="Vehicles">Vehicles</button>
-    <button class="filter-btn" data-cat="Spawn">Spawn</button>
-    <button class="filter-btn" data-cat="World">World</button>
-    <button class="filter-btn" data-cat="Peds">Peds</button>
-    <button class="filter-btn" data-cat="Time">Time/Weather</button>
-  </div>
+  <!-- FILTER BAR (built by JS) -->
+  <div class="filter-bar" id="filterBar"></div>
 
   <!-- STATUS BAR -->
   <div class="status-bar">
-    <div class="count-info">Showing <strong id="countNum">0</strong> cheats</div>
+    <div class="count-info">Showing <strong id="countNum">0</strong> cheats<span id="hiddenInfo"></span></div>
     <div class="view-sort">
-      <button class="vs-btn active" id="gridViewBtn" title="Grid view">⊞</button>
-      <button class="vs-btn" id="listViewBtn" title="List view">☰</button>
-      <button class="vs-btn" id="sortBtn" title="Sort A→Z">A↓</button>
+      <button class="vs-btn active" id="gridViewBtn" title="Grid view" aria-label="Grid view">⊞</button>
+      <button class="vs-btn" id="listViewBtn" title="List view" aria-label="List view">☰</button>
+      <button class="vs-btn" id="sortBtn" title="Sort A→Z" aria-label="Sort A to Z">A↓</button>
     </div>
   </div>
 
@@ -691,16 +893,16 @@ kbd{
 
 <!-- FOOTER -->
 <footer>
-  SA CHEATS &nbsp;·&nbsp; GTA San Andreas &nbsp;·&nbsp;
-  <a href="https://zengm5057-sudo.github.io/sa-cheats/" target="_blank">zengm5057-sudo.github.io/sa-cheats/</a>
+  CHEAT VAULT &nbsp;·&nbsp; GTA San Andreas &amp; GTA V &nbsp;·&nbsp;
+  <a href="https://zengm5057-sudo.github.io/sa-cheats/" target="_blank" rel="noopener">zengm5057-sudo.github.io/sa-cheats/</a>
 </footer>
 
-<div id="toast-container"></div>
-<button id="scrollTop" title="Back to top">↑</button>
+<div id="toast-container" aria-live="polite"></div>
+<button id="scrollTop" title="Back to top" aria-label="Back to top">↑</button>
 
 <script>
-/* ════ DATA ════ */
-const CHEATS = [
+/* ════ DATA — GTA SAN ANDREAS ════ */
+const SA_CHEATS = [
   { name:"Weapon Set 1",cat:"Weapons",ps:"R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Right, Up" },
   { name:"Weapon Set 2",cat:"Weapons",ps:"R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Down, Left" },
   { name:"Weapon Set 3",cat:"Weapons",ps:"R1, R2, L1, R2, Left, Down, Right, Up, Left, Down, Down, Down" },
@@ -781,16 +983,113 @@ const CHEATS = [
   { name:"Bobble Head Mode",cat:"World",ps:"Up, Up, Down, Down, Left, Right, Left, Right, Circle, X" },
 ];
 
+/* ════ DATA — GTA V STORY MODE ════
+   [name, category, PC word, PlayStation combo (null = phone/PC only), note, options]
+   PC word and phone number come from the same word (phone keypad letters).
+   Rows with ps = null exist only on PS4 / PS5 / Xbox One / Series / PC. */
+const V_RAW = [
+  ['Invincibility','Player','PAINKILLER','Right, X, Right, Left, Right, R1, Right, Left, X, Triangle','Lasts about 5 minutes. Enter again to renew.'],
+  ['Max Health & Armor','Player','TURTLE','Circle, L1, Triangle, R2, X, Square, Circle, Right, Square, L1, L1, L1','Refills health and armor.'],
+  ['Recharge Special Ability','Player','POWERUP','X, X, Square, R1, L1, X, Right, Left, X','Refills the special ability meter.'],
+  ['Fast Run','Player','CATCHME','Triangle, Left, Right, Right, L2, L1, Square','Run faster.'],
+  ['Fast Swim','Player','GOTGILLS','Left, Left, L1, Right, Right, R2, Left, L2, Right','Swim faster.'],
+  ['Super Jump','Player','HOPTOIT','Left, Left, Triangle, Triangle, Right, Right, Left, Right, Square, R1, R2','Jump much higher.'],
+  ['Drunk Mode','Player','LIQUOR','Triangle, Right, Right, Left, Right, Square, Circle, Left','Walking, running and driving wobble.'],
+  ['Parachute','Player','SKYDIVE','Left, Right, L1, L2, R1, R2, R2, Left, Left, Right, L1','Equips a parachute.'],
+  ['Skyfall','Player','SKYFALL','L1, L2, R1, R2, Left, Right, Left, Right, L1, L2, R1, R2, Left, Right, Left, Right','Drops you mid-air. Use the parachute cheat after.'],
+
+  ['Weapons & Ammo','Weapons','TOOLUP','Triangle, R2, Left, L1, X, Right, Triangle, Down, Square, L1, L1, L1','Every weapon, full ammo.'],
+  ['Explosive Bullets','Weapons','HIGHEX','Right, Square, X, Left, R1, R2, Left, Right, Right, L1, L1, L1','Rounds explode on impact.'],
+  ['Explosive Melee','Weapons','HOTHANDS','Right, Left, X, Triangle, R1, Circle, Circle, Circle, L2','Punches and kicks explode.'],
+  ['Flaming Bullets','Weapons','INCENDIARY','L1, R1, Square, R1, Left, R2, R1, Left, Square, Right, L1, L1','Rounds set targets on fire.'],
+  ['Slow Motion Aim','Weapons','DEADEYE','Square, L2, R1, Triangle, Left, Square, L2, Right, X','Aiming slows time.'],
+
+  ['Lower Wanted Level','Wanted','LAWYERUP','R1, R1, Circle, R2, Right, Left, Right, Left, Right, Left','Removes one star per entry.'],
+  ['Raise Wanted Level','Wanted','FUGITIVE','R1, R1, Circle, R2, Left, Right, Left, Right, Left, Right','Adds one star per entry.'],
+
+  ['Slippery Cars','Vehicles','SNOWDAY','Triangle, R1, R1, Left, R1, L1, R2, L1','Cars drift like on ice.'],
+  ['Spawn BMX','Vehicles','BANDIT','Left, Left, Right, Right, Left, Right, Square, Circle, Triangle, R1, R2','Bicycle.'],
+  ['Spawn Buzzard','Vehicles','BUZZOFF','Circle, Circle, L1, Circle, Circle, Circle, L1, L2, R1, Triangle, Circle, Triangle','Armed attack helicopter.'],
+  ['Spawn Caddy','Vehicles','HOLEIN1','Circle, L1, Left, R1, L2, X, R1, L1, Circle, X','Golf cart.'],
+  ['Spawn Comet','Vehicles','COMET','R1, Circle, R2, Right, L1, L2, X, X, Square, R1','Sports car.'],
+  ['Spawn Duster','Vehicles','FLYSPRAY','Right, Left, R1, R1, R1, Left, Triangle, Triangle, X, Circle, L1, L1','Crop duster plane.'],
+  ['Spawn Limo','Vehicles','VINEWOOD','R2, Right, L2, Left, Left, R1, L1, Circle, Right','Stretch limo.'],
+  ['Spawn PCJ-600','Vehicles','ROCKET','R1, Right, Left, Right, R2, Left, Right, Square, Right, L2, L1, L1','Sport bike.'],
+  ['Spawn Rapid GT','Vehicles','RAPIDGT','R2, L1, Circle, Right, L1, R1, Right, Left, Circle, R2','Sports car.'],
+  ['Spawn Sanchez','Vehicles','OFFROAD','Circle, X, L1, Circle, Circle, L1, Circle, R1, R2, L2, L1, L1','Dirt bike.'],
+  ['Spawn Stunt Plane','Vehicles','BARNSTORM','Circle, Right, L1, L2, Left, R1, L1, L1, Left, Left, X, Triangle','Stunt plane.'],
+  ['Spawn Trashmaster','Vehicles','TRASHED','Circle, R1, Circle, R1, Left, Left, R1, L1, Circle, Right','Garbage truck.'],
+  ['Spawn Dodo','Vehicles','EXTINCT',null,'Seaplane. Spawns on land.',{req:'Finish the Sea Plane random event first.'}],
+  ['Spawn Duke O’Death','Vehicles','DEATHCAR',null,'Armored muscle car.',{req:'Finish the Duel random event first.'}],
+  ['Spawn Kraken','Vehicles','BUBBLES',null,'Submarine. Spawns on land.',{req:'Photograph all 20 animals (Wildlife Photography Challenge) first.'}],
+
+  ['Change Weather','World','MAKEITRAIN','R2, X, L1, L1, L2, L2, L2, Square','Cycles the weather on each entry.'],
+  ['Moon Gravity','World','FLOATER','Left, Left, L1, R1, L1, Right, Left, L1, Left','Low gravity.'],
+  ['Slow Motion','World','SLOWMO','Triangle, Left, Right, Right, Square, R2, R1','Slows the whole game. Enter again to step speed.'],
+
+  ['Director Mode','Special','JRTALENT',null,'Opens Director Mode from story mode.'],
+  ['Black Cell Phone','Special','EMPDROP',null,'Turns the phone black. Only confirmed effect.',{warn:'Some guides claim random explosions'}],
+];
+
+/* ════ HELPERS ════ */
+const T9={a:2,b:2,c:2,d:3,e:3,f:3,g:4,h:4,i:4,j:5,k:5,l:5,m:6,n:6,o:6,p:7,q:7,r:7,s:7,t:8,u:8,v:8,w:9,x:9,y:9,z:9};
+const phoneOf=w=>'1-999-'+[...w.toLowerCase()].map(c=>T9[c]??c).join('');
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
 function psToXbox(p){
   const m={x:'A',cross:'A',circle:'B',square:'X',triangle:'Y',l1:'LB',l2:'LT',r1:'RB',r2:'RT'};
-  return p.split(',').map(s=>{const t=s.trim().toLowerCase();return m[t]?' '+m[t]:s;}).join(',');
+  return p.split(',').map(s=>{s=s.trim();return m[s.toLowerCase()]||s;}).join(', ');
 }
-CHEATS.forEach(c=>{c.xbox=psToXbox(c.ps);});
+
+SA_CHEATS.forEach(c=>{c.game='sa';c.xbox=psToXbox(c.ps);});
+const V_CHEATS=V_RAW.map(([name,cat,word,ps,note,o={}])=>({
+  game:'v',name,cat,word,ps,note,phone:phoneOf(word),
+  xbox:ps?psToXbox(ps):null,
+  newOnly:!ps,req:o.req||'',warn:o.warn||''
+}));
+[...SA_CHEATS,...V_CHEATS].forEach(c=>{
+  c._hay=[c.name,c.cat,c.ps||'',c.xbox||'',c.word||'',c.phone||'',c.note||''].join(' ').toLowerCase();
+});
+
+const GAMES={
+  sa:{
+    title:'GTA San Andreas',
+    data:SA_CHEATS,
+    platforms:['ps','xbox'],
+    cats:[['all','All'],['Player'],['Weapons'],['Vehicles'],['Spawn'],['World'],['Peds'],['Time','Time/Weather']],
+    sub:'Grand Theft Auto · San Andreas · Cheat Reference',
+    placeholder:'Search cheat or button (e.g. R1, Circle, health)…',
+    badges:'<span class="badge badge-ps">PS4 · PS5</span><span class="badge badge-xbox">Xbox One · Series X</span><span class="badge badge-ver">✓ Verified</span>',
+    hash:'#sa'
+  },
+  v:{
+    title:'GTA V Story Mode',
+    data:V_CHEATS,
+    platforms:['ps','xbox','pc','phone'],
+    cats:[['all','All'],['Player'],['Weapons'],['Wanted'],['Vehicles'],['World'],['Special'],['__new','New-gen only']],
+    sub:'Grand Theft Auto V · Story Mode · Cheat Reference',
+    placeholder:'Search cheat, button, word or number (e.g. R1, TURTLE, 1-999)…',
+    badges:'<span class="badge badge-ps">PS3 · PS4 · PS5</span><span class="badge badge-xbox">360 · One · Series X</span><span class="badge badge-ver">PC · Phone</span>',
+    hash:'#gta5'
+  }
+};
 
 /* ════ STATE ════ */
-let currentCat='all',currentQuery='',currentPlatform='ps',sortAZ=false,listView=false;
-let favorites=new Set(JSON.parse(localStorage.getItem('sa_favs')||'[]'));
-const saveFavs=()=>localStorage.setItem('sa_favs',JSON.stringify([...favorites]));
+let game='sa',gen='new',currentCat='all',currentQuery='',currentPlatform='ps',sortAZ=false,listView=false;
+function loadFavs(){
+  let raw=null;
+  try{raw=JSON.parse(localStorage.getItem('cv_favs')||'null');}catch(e){}
+  if(!raw){
+    let old=[];
+    try{old=JSON.parse(localStorage.getItem('sa_favs')||'[]');}catch(e){}
+    raw=old.map(n=>'sa:'+n);
+  }
+  return new Set(raw);
+}
+let favorites=loadFavs();
+const saveFavs=()=>{try{localStorage.setItem('cv_favs',JSON.stringify([...favorites]));}catch(e){}};
+const favKey=ch=>ch.game+':'+ch.name;
+const visible=()=>GAMES[game].data.filter(c=>!(gen==='old'&&c.newOnly));
 
 /* ════ BUTTON PILLS ════ */
 const PS_CLASS={x:'btn-cross',cross:'btn-cross',circle:'btn-circle',square:'btn-square',triangle:'btn-triangle',r1:'btn-r1',r2:'btn-r2',l1:'btn-l1',l2:'btn-l2'};
@@ -798,8 +1097,8 @@ const XBOX_CLASS={a:'btn-a',b:'btn-b',x:'btn-x',y:'btn-y',rb:'btn-rb',rt:'btn-rt
 const PS_LABEL={x:'✕',cross:'✕',circle:'○',square:'□',triangle:'△',up:'↑',down:'↓',left:'←',right:'→',r1:'R1',r2:'R2',l1:'L1',l2:'L2'};
 const XBOX_LABEL={a:'A',b:'B',x:'X',y:'Y',rb:'RB',rt:'RT',lb:'LB',lt:'LT',up:'↑',down:'↓',left:'←',right:'→'};
 
-function getBtnClass(b){b=b.trim().toLowerCase();return currentPlatform==='ps'?(PS_CLASS[b]||'btn-dir'):(XBOX_CLASS[b]||'btn-dir');}
-function getBtnLabel(b){b=b.trim().toLowerCase();return currentPlatform==='ps'?(PS_LABEL[b]||b.toUpperCase()):(XBOX_LABEL[b]||b.toUpperCase());}
+function getBtnClass(b){b=b.trim().toLowerCase();return currentPlatform==='xbox'?(XBOX_CLASS[b]||'btn-dir'):(PS_CLASS[b]||'btn-dir');}
+function getBtnLabel(b){b=b.trim().toLowerCase();return currentPlatform==='xbox'?(XBOX_LABEL[b]||b.toUpperCase()):(PS_LABEL[b]||b.toUpperCase());}
 function parseCode(code){
   return code.split(',').map(p=>{p=p.trim();return `<span class="btn-pill ${getBtnClass(p)}">${getBtnLabel(p)}</span>`;}).join('');
 }
@@ -816,55 +1115,83 @@ function toast(msg,type='success',icon='✓'){
 
 /* ════ HIGHLIGHT ════ */
 function highlight(t,q){
+  t=esc(t);
   if(!q)return t;
-  const re=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  const re=new RegExp(`(${esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');
   return t.replace(re,'<mark>$1</mark>');
+}
+
+/* ════ CODE FOR CURRENT PLATFORM ════ */
+function codeFor(ch){
+  const p=currentPlatform;
+  if(ch.game==='sa'){
+    const s=p==='ps'?ch.ps:ch.xbox;
+    return {copy:s,html:`<div class="card-code ${p==='xbox'?'xbox':''}">${parseCode(s)}</div>`};
+  }
+  if(p==='ps'||p==='xbox'){
+    const s=p==='ps'?ch.ps:ch.xbox;
+    if(s)return {copy:s,html:`<div class="card-code ${p==='xbox'?'xbox':''}">${parseCode(s)}</div>`};
+    return {copy:ch.phone,html:`<div class="card-code"><span class="phone-chip">${ch.phone}</span><span class="word-alt">phone only</span></div>`};
+  }
+  if(p==='pc')return {copy:ch.word,html:`<div class="card-code"><span class="word-chip">${ch.word}</span></div>`};
+  return {copy:ch.phone,html:`<div class="card-code"><span class="phone-chip">${ch.phone}</span><span class="word-alt">1-999-${ch.word}</span></div>`};
+}
+
+function extrasFor(ch){
+  const tags=[];
+  if(ch.newOnly)tags.push('<span class="tag tag-new">New-gen only</span>');
+  if(ch.req)tags.push('<span class="tag tag-lock">Unlock first</span>');
+  if(ch.warn)tags.push(`<span class="tag tag-warn">${esc(ch.warn)}</span>`);
+  return {
+    tags:tags.length?`<div class="card-tags">${tags.join('')}</div>`:'',
+    note:(ch.note?`<div class="card-note">${esc(ch.note)}</div>`:'')+(ch.req?`<div class="card-req">⚠ ${esc(ch.req)}</div>`:''),
+    has:!!(tags.length||ch.note||ch.req)
+  };
 }
 
 /* ════ BUILD CARD ════ */
 function buildCard(ch,query){
   const card=document.createElement('div');
-  const isFav=favorites.has(ch.name);
-  const code=currentPlatform==='ps'?ch.ps:ch.xbox;
-  card.className='card'+(isFav?' is-fav':'');
+  const key=favKey(ch);
+  const isFav=favorites.has(key);
+  const code=codeFor(ch);
+  const ex=extrasFor(ch);
+  card.className='card'+(isFav?' is-fav':'')+(ex.has?' has-extra':'');
   const corner='<div class="card-corner"></div>';
+  const actions=`<div class="card-actions">
+        <button class="fav-btn ${isFav?'active':''}" title="Favorite" aria-label="Favorite">★</button>
+        <button class="copy-btn">COPY</button>
+      </div>`;
 
   if(listView){
     card.innerHTML=`${corner}
       <div class="card-left">
         <div class="card-category">${ch.cat}</div>
         <div class="card-name">${highlight(ch.name,query)}</div>
+        ${ex.tags}${ex.note}
       </div>
-      <div class="card-code-wrap">
-        <div class="card-code ${currentPlatform==='xbox'?'xbox':''}">${parseCode(code)}</div>
-      </div>
-      <div class="card-actions">
-        <button class="fav-btn ${isFav?'active':''}" data-name="${ch.name}" title="Favorite">★</button>
-        <button class="copy-btn" data-code="${code}">COPY</button>
-      </div>`;
+      <div class="card-code-wrap">${code.html}</div>
+      ${actions}`;
   } else {
     card.innerHTML=`${corner}
-      <div class="card-actions">
-        <button class="fav-btn ${isFav?'active':''}" data-name="${ch.name}" title="Favorite">★</button>
-        <button class="copy-btn" data-code="${code}">COPY</button>
-      </div>
+      ${actions}
       <div class="card-category">${ch.cat}</div>
       <div class="card-name">${highlight(ch.name,query)}</div>
-      <div class="card-code ${currentPlatform==='xbox'?'xbox':''}">${parseCode(code)}</div>`;
+      ${ex.tags}${ex.note}
+      ${code.html}`;
   }
 
   card.querySelector('.copy-btn').addEventListener('click',e=>{
     const btn=e.currentTarget;
-    navigator.clipboard.writeText(btn.dataset.code).then(()=>{
+    navigator.clipboard.writeText(code.copy).then(()=>{
       btn.textContent='COPIED';btn.classList.add('copied');
-      toast(`Copied: <strong>${ch.name}</strong>`,'success','📋');
+      toast(`Copied: <strong>${esc(ch.name)}</strong>`,'success','📋');
       setTimeout(()=>{btn.textContent='COPY';btn.classList.remove('copied');},1600);
-    });
+    }).catch(()=>toast('Copy blocked by browser','info','!'));
   });
-  card.querySelector('.fav-btn').addEventListener('click',e=>{
-    const name=e.currentTarget.dataset.name;
-    if(favorites.has(name)){favorites.delete(name);toast('Removed from favorites','info','☆');}
-    else{favorites.add(name);toast('Added to favorites','accent','★');}
+  card.querySelector('.fav-btn').addEventListener('click',()=>{
+    if(favorites.has(key)){favorites.delete(key);toast('Removed from favorites','info','☆');}
+    else{favorites.add(key);toast('Added to favorites','accent','★');}
     saveFavs();renderFavs();applyFilters();
   });
   return card;
@@ -876,10 +1203,12 @@ function renderFavs(){
   const grid=document.getElementById('favGrid');
   const cnt=document.getElementById('favCount');
   grid.innerHTML='';
-  if(favorites.size===0){sec.classList.remove('has-favs');return;}
+  grid.classList.toggle('list-view',listView);
+  const list=visible().filter(c=>favorites.has(favKey(c)));
+  if(list.length===0){sec.classList.remove('has-favs');return;}
   sec.classList.add('has-favs');
-  cnt.textContent=`${favorites.size} saved`;
-  CHEATS.filter(c=>favorites.has(c.name)).forEach(ch=>{
+  cnt.textContent=`${list.length} saved`;
+  list.forEach(ch=>{
     const card=buildCard(ch,'');card.style.animation='none';grid.appendChild(card);
   });
 }
@@ -905,24 +1234,97 @@ function renderCards(list,query){
 
 /* ════ FILTERS ════ */
 function applyFilters(){
-  let list=[...CHEATS];
-  if(currentCat!=='all')list=list.filter(c=>c.cat===currentCat);
+  let list=[...visible()];
+  if(currentCat==='__new')list=list.filter(c=>c.newOnly);
+  else if(currentCat!=='all')list=list.filter(c=>c.cat===currentCat);
   if(currentQuery){
     const q=currentQuery.toLowerCase();
-    list=list.filter(c=>c.name.toLowerCase().includes(q)||c.ps.toLowerCase().includes(q)||c.cat.toLowerCase().includes(q));
+    list=list.filter(c=>c._hay.includes(q));
   }
   if(sortAZ)list.sort((a,b)=>a.name.localeCompare(b.name));
   renderCards(list,currentQuery);
+  const hidden=GAMES[game].data.length-visible().length;
+  document.getElementById('hiddenInfo').textContent=hidden?` · ${hidden} new-gen only hidden`:'';
 }
 
-function updateCatCounts(){
-  document.querySelectorAll('.filter-btn').forEach(btn=>{
-    const cat=btn.dataset.cat;
-    const count=cat==='all'?CHEATS.length:CHEATS.filter(c=>c.cat===cat).length;
-    let span=btn.querySelector('.cat-count');
-    if(!span){span=document.createElement('span');span.className='cat-count';btn.appendChild(span);}
-    span.textContent=count;
+function buildFilters(){
+  const bar=document.getElementById('filterBar');
+  const data=visible();
+  bar.innerHTML='';
+  GAMES[game].cats.forEach(([cat,label])=>{
+    const count=cat==='all'?data.length:cat==='__new'?data.filter(c=>c.newOnly).length:data.filter(c=>c.cat===cat).length;
+    if(cat!=='all'&&count===0)return;
+    const btn=document.createElement('button');
+    btn.className='filter-btn'+(cat===currentCat?' active':'');
+    btn.dataset.cat=cat;
+    btn.innerHTML=`${label||cat}<span class="cat-count">${count}</span>`;
+    btn.addEventListener('click',()=>{
+      currentCat=cat;
+      bar.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b===btn));
+      applyFilters();
+    });
+    bar.appendChild(btn);
   });
+}
+
+/* ════ PLATFORM / GAME / VERSION ════ */
+function syncPlatformUI(){
+  const allowed=GAMES[game].platforms;
+  document.querySelectorAll('.platform-btn').forEach(b=>{
+    const p=b.dataset.platform;
+    b.hidden=!allowed.includes(p);
+    b.disabled=gen==='old'&&(p==='pc'||p==='phone');
+    b.classList.toggle('active',p===currentPlatform);
+  });
+}
+
+function setPlatform(p,quiet){
+  currentPlatform=p;
+  syncPlatformUI();
+  if(!quiet){
+    const names={ps:['PlayStation','🎮'],xbox:['Xbox','🟢'],pc:['PC','⌨'],phone:['Phone','📱']};
+    toast(`Switched to ${names[p][0]} codes`,'info',names[p][1]);
+  }
+  renderFavs();applyFilters();
+}
+
+function updateVersionNote(){
+  const note=document.getElementById('versionNote');
+  const phoneOnly=V_CHEATS.filter(c=>c.newOnly).length;
+  note.innerHTML=gen==='new'
+    ?'PS4 and PS5 use the <strong>same codes</strong>. Phone numbers and the 3 unlockable vehicles work here.'
+    :`PS3 / Xbox 360: <strong>button combos only</strong>. ${phoneOnly} phone-only cheats hidden.`;
+}
+
+function setGen(g){
+  gen=g;
+  document.querySelectorAll('.seg-btn').forEach(b=>b.classList.toggle('active',b.dataset.gen===g));
+  if(g==='old'&&(currentPlatform==='pc'||currentPlatform==='phone'))currentPlatform='ps';
+  if(g==='old'&&currentCat==='__new')currentCat='all';
+  updateVersionNote();syncPlatformUI();buildFilters();renderFavs();applyFilters();
+}
+
+function setGame(g,quiet){
+  game=g;
+  const cfg=GAMES[g];
+  document.documentElement.dataset.game=g;
+  document.querySelectorAll('.game-tab').forEach(t=>{
+    const on=t.dataset.game===g;
+    t.classList.toggle('active',on);
+    t.setAttribute('aria-selected',on);
+  });
+  document.getElementById('versionBar').hidden=g!=='v';
+  document.getElementById('diffPanel').hidden=g!=='v';
+  if(g!=='v')gen='new';
+  if(!cfg.platforms.includes(currentPlatform))currentPlatform='ps';
+  currentCat='all';
+  document.getElementById('subtitle').textContent=cfg.sub;
+  document.getElementById('badges').innerHTML=cfg.badges;
+  document.getElementById('search').placeholder=cfg.placeholder;
+  document.title=`Cheat Vault — ${cfg.title}`;
+  if(g==='v'){document.querySelectorAll('.seg-btn').forEach(b=>b.classList.toggle('active',b.dataset.gen===gen));updateVersionNote();}
+  syncPlatformUI();buildFilters();renderFavs();applyFilters();
+  if(!quiet)history.replaceState(null,'',cfg.hash);
 }
 
 /* ════ EVENTS ════ */
@@ -938,21 +1340,10 @@ clearBtn.addEventListener('click',()=>{
   searchEl.focus();applyFilters();
 });
 
-document.querySelectorAll('.filter-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');currentCat=btn.dataset.cat;applyFilters();
-  });
-});
-
+document.querySelectorAll('.game-tab').forEach(t=>t.addEventListener('click',()=>{if(t.dataset.game!==game)setGame(t.dataset.game);}));
+document.querySelectorAll('.seg-btn').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.gen!==gen)setGen(b.dataset.gen);}));
 document.querySelectorAll('.platform-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.platform-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');currentPlatform=btn.dataset.platform;
-    const isPS=currentPlatform==='ps';
-    toast(`Switched to ${isPS?'PlayStation':'Xbox'} layout`,'info',isPS?'🎮':'🟢');
-    renderFavs();applyFilters();
-  });
+  btn.addEventListener('click',()=>{if(!btn.disabled&&btn.dataset.platform!==currentPlatform)setPlatform(btn.dataset.platform);});
 });
 
 document.getElementById('themeToggle').addEventListener('click',()=>{
@@ -967,39 +1358,38 @@ document.getElementById('sortBtn').addEventListener('click',()=>{
   applyFilters();
 });
 
-document.getElementById('gridViewBtn').addEventListener('click',()=>{
-  listView=false;
-  document.getElementById('grid').classList.remove('list-view');
-  document.getElementById('gridViewBtn').classList.add('active');
-  document.getElementById('listViewBtn').classList.remove('active');
-  applyFilters();
-});
-document.getElementById('listViewBtn').addEventListener('click',()=>{
-  listView=true;
-  document.getElementById('grid').classList.add('list-view');
-  document.getElementById('listViewBtn').classList.add('active');
-  document.getElementById('gridViewBtn').classList.remove('active');
-  applyFilters();
-});
+function setView(isList){
+  listView=isList;
+  document.getElementById('grid').classList.toggle('list-view',isList);
+  document.getElementById('listViewBtn').classList.toggle('active',isList);
+  document.getElementById('gridViewBtn').classList.toggle('active',!isList);
+  renderFavs();applyFilters();
+}
+document.getElementById('gridViewBtn').addEventListener('click',()=>setView(false));
+document.getElementById('listViewBtn').addEventListener('click',()=>setView(true));
 
 document.getElementById('randomBtn').addEventListener('click',()=>{
-  const r=CHEATS[Math.floor(Math.random()*CHEATS.length)];
+  const pool=visible();
+  const r=pool[Math.floor(Math.random()*pool.length)];
   searchEl.value=r.name;currentQuery=r.name;clearBtn.classList.add('visible');
   currentCat='all';
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelector('.filter-btn[data-cat="all"]').classList.add('active');
-  applyFilters();toast(`Random: <strong>${r.name}</strong>`,'accent','🎲');
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.cat==='all'));
+  applyFilters();toast(`Random: <strong>${esc(r.name)}</strong>`,'accent','🎲');
 });
 
 document.getElementById('exportBtn').addEventListener('click',()=>{
-  if(favorites.size===0){toast('Star some cheats first!','info','★');return;}
-  const lines=CHEATS.filter(c=>favorites.has(c.name)).map(c=>`${c.name}\n  PS:   ${c.ps}\n  Xbox: ${c.xbox}`);
-  const text=`GTA San Andreas — Saved Cheats\n${'═'.repeat(40)}\n\n${lines.join('\n\n')}`;
-  navigator.clipboard.writeText(text).then(()=>{toast(`${favorites.size} cheat${favorites.size>1?'s':''} copied!`,'success','📤');});
+  const list=GAMES[game].data.filter(c=>favorites.has(favKey(c)));
+  if(list.length===0){toast('Star some cheats first!','info','★');return;}
+  const lines=list.map(c=>game==='sa'
+    ?`${c.name}\n  PS:   ${c.ps}\n  Xbox: ${c.xbox}`
+    :`${c.name}\n  PS:    ${c.ps||'phone only'}\n  Xbox:  ${c.xbox||'phone only'}\n  PC:    ${c.word}\n  Phone: ${c.phone}`);
+  const text=`${GAMES[game].title} — Saved Cheats\n${'═'.repeat(40)}\n\n${lines.join('\n\n')}`;
+  navigator.clipboard.writeText(text).then(()=>{toast(`${list.length} cheat${list.length>1?'s':''} copied!`,'success','📤');});
 });
 
 document.getElementById('clearFavsBtn').addEventListener('click',()=>{
-  favorites.clear();saveFavs();renderFavs();applyFilters();toast('Favorites cleared','info','🗑');
+  GAMES[game].data.forEach(c=>favorites.delete(favKey(c)));
+  saveFavs();renderFavs();applyFilters();toast('Favorites cleared','info','🗑');
 });
 
 document.addEventListener('keydown',e=>{
@@ -1011,8 +1401,16 @@ const scrollTopBtn=document.getElementById('scrollTop');
 window.addEventListener('scroll',()=>{scrollTopBtn.classList.toggle('visible',window.scrollY>400);});
 scrollTopBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
 
+window.addEventListener('hashchange',()=>{
+  const g=location.hash==='#gta5'?'v':'sa';
+  if(g!==game)setGame(g,true);
+});
+
 /* ════ INIT ════ */
-updateCatCounts();renderFavs();applyFilters();
+document.getElementById('cntSA').textContent=SA_CHEATS.length;
+document.getElementById('cntV').textContent=V_CHEATS.length;
+setGame(location.hash==='#gta5'?'v':'sa',true);
 </script>
+
 </body>
 </html>
